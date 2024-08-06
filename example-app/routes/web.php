@@ -7,16 +7,27 @@ Route::get('/', function () {
 });
 
 
-Route::get('/post/{id?}/comment/{comment?}', function (string $id = null, string $comment = null) {
-    
-    if($id)
-    {
-      return "<h1>Post Page id =". $id ." <br>  Comment id =". $comment ."</h1>";
-    }
-    else{
-              return "<h1>No ID Found</h1>";
-    }
-})-> whereIn('id',[1,2,3])->whereAlpha('comment');
+//Routes Grouping
+ Route::prefix('page')->group(function () {
+ 
+    Route::get('/about/{aboutid}', function (string $aboutid) {
+    return "<h3>About id is ".$aboutid."</h3>";
+})->whereNumber('aboutid');
+ 
+    Route::get('/contactus/{userid}', function (string $userid) {
+    return "<h3>User id is ".$userid."</h3>";
+})->whereIn('userid',[1,2,3]);
 
+    Route::get('/menu/{prodid}', function (string $prodid) {
+    return "<h3>Product id is ".$prodid."</h3>";
+})->whereAlphaNumeric('prodid');
 
-// Route::view('post','/post');
+ });
+
+ //Error Msg Page
+
+ Route::fallback(function () {
+
+    return "<h4>Page not Found</h4>";
+
+ });
