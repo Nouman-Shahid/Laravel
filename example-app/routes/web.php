@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('pages.welcome');
+    return view('pages.welcome',['data'=>'Data to enrich your online business']);
 });
 Route::get('/about', function () {
     return view('pages.about');
