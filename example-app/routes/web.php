@@ -12,6 +12,7 @@ Route::get('/post', function () {
     return view('pages.post');
 });
 
+
  //Error Msg Page
 
  Route::fallback(function () {
