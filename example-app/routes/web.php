@@ -11,6 +11,9 @@ Route::get('/about', function () {
 Route::get('/post', function () {
     return view('pages.post');
 });
+Route::get('/post', function () {
+    return view('pages.post',['data'=> 'Post Page of bussiness']);
+});
 
 
  //Error Msg Page
