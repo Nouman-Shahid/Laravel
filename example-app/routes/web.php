@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\RegistrationController;
 
 
 // Route::get('/', function () {
@@ -11,19 +12,22 @@ use App\Http\Controllers\PageController;
 
 //Controller Pages
 Route::get('/', [PageController::class,'showHome'] );
-Route::get('/user/{id}', [PageController::class,'showUser'] );
+
+Route::get('/user', [RegistrationController::class,'index'] );
+Route::post('/user', [RegistrationController::class,'register'] );
 
 
 
+Route::get('/user', function () {
+    return view('pages.user');
+});
 Route::get('/about', function () {
     return view('pages.about');
 });
 Route::get('/post', function () {
     return view('pages.post',['data'=> 'Post Page of bussiness']);
 });
-// Route::get('/user/{id}', function (string $id) {
-//     return view('pages.user',['user_id'=> $id]);
-// })->whereNumber('id');
+
 
 
  //Error Msg Page
