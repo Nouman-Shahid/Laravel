@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign(_("emp_id"))->references("id")->on("employees");
             $table->double("salary");
             $table->date("date");
+            $table->timestamps();
         });
     }
 
