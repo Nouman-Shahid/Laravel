@@ -13,33 +13,14 @@ class EmployeeSeeder extends Seeder
      */
     public function run(): void
     {
-        $employee = collect([
-            [
-            "id"=> 1,
-            "name"=> "Numan",
-            "email"=> "numan@gmail.com",
-            "phone"=> "03214054589",
-            "address"=> "Lahore",
-            ],
-            [
-            "id"=> 2,
-            "name"=> "Faraz",
-            "email"=> "faraz@gmail.com",
-            "phone"=> "0321329440",
-            "address"=> "Islamabad",
-            ],
-            [
-            "id"=> 3,
-            "name"=> "Umer",
-            "email"=> "umer@gmail.com",
-            "phone"=> "03214787581",
-            "address"=> "Sialkot",
-            ],
-        ]);
-
-        $employee->each(function ($employee){
-            employee::insert($employee);
-       
-    });
+        for($i=1;$i<20;$i++)
+        {
+            employee::create([
+                'name'=>fake()->name(),
+                'email'=>fake()->unique()->email(),   
+                'phone'=>fake()->unique()->phoneNumber(),   
+                'address'=>fake()->address(),   
+            ]);
+        }
     }
 }
