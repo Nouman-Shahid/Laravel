@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('library', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->string('book');
-            $table->date('due_date');
-            $table->boolean('status');
+        Schema::create('salary', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger("emp_id");
+            $table->foreign(_("emp_id"))->references("id")->on("employees");
+            $table->double("salary");
+            $table->date("date");
         });
-
     }
 
     /**
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('library');
+        Schema::dropIfExists('salary');
     }
 };
