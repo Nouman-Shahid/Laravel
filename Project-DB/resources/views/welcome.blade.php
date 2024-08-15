@@ -14,18 +14,27 @@
        
     </head>
     <body>
-           <h2>All User's Data</h2>
-
+        
+        <table style="border: 2px solid red;border-collapse: collapse;">
+        <th>Id</th>
+        <th>Name</th>
+        <th >Phone</th>
+        <th >Email</th>
+        <th >Age</th>
+        <th >Address</th>
+        <th >Action</th>
            @foreach ($data as $item => $doctor)
 
-           <h4>
-            {{$doctor->name}}|
-            {{$doctor->phone}}|
-            {{$doctor->email}}|
-            {{$doctor->address}}|
-
-           </h4>
-               
-           @endforeach
+           <tr style="border: 2px solid red">
+               <td>{{$doctor->id}}</td>
+               <td>{{$doctor->name}}</td>
+               <td>{{$doctor->phone}}</td>
+               <td>{{$doctor->email}}</td>
+               <td>{{$doctor->age}}</td>
+               <td>{{$doctor->address}}</td>
+               <td><a href="{{ route('view.user', ['id' => $doctor->id]) }}">View Details</a></td>
+           </tr>
+            @endforeach
+        </table>
     </body>
 </html>

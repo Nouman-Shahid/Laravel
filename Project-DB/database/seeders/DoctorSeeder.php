@@ -19,6 +19,7 @@ class DoctorSeeder extends Seeder
                 'name'=>fake()->name(),
                 'phone'=>fake()->phoneNumber(),
                 'email'=>fake()->email(),
+                'age'=>fake()->numberBetween(38,55),
                 'address'=>fake()->address(),
             ]);
         }
