@@ -9,7 +9,7 @@ class DoctorController extends Controller
 {
     public function showDoctor()
     {
-        $doctor = DB::table('doctors')->where('address','like','%K%')->get();
+        $doctor = DB::table('doctors')->get();
         return view('welcome',['data' => $doctor]);
     }
 
