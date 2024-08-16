@@ -11,12 +11,18 @@
 
 <body>
     <table>
+        <tr style="border: 2px solid red">
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>City</th>
+        </tr>
         @foreach ($data as $item => $teachers)
-            <tr style="border: 2px solid red">
-                <td>{{ $teachers->name }}|</td>
-                <td>{{ $teachers->phone }}|</td>
-                <td>{{ $teachers->email }}|</td>
-                <td>{{ $teachers->city }}| </td>
+            <tr style="border: 2px solid red" class="space-x-8">
+                <td>{{ $teachers->name }}</td>
+                <td>{{ $teachers->phone }}</td>
+                <td>{{ $teachers->email }}</td>
+                <td>{{ $teachers->city }} </td>
             </tr>
         @endforeach
     </table>

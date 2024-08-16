@@ -11,12 +11,20 @@
 
 <body>
     <table>
+        <tr style="border: 2px solid red">
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>City</th>
+            <th>Action</th>
+        </tr>
         @foreach ($data as $item => $teachers)
-            <tr style="border: 2px solid red">
+            <tr style="border: 2px solid red;">
                 <td>{{ $teachers->name }}</td>
                 <td>{{ $teachers->phone }}</td>
                 <td>{{ $teachers->email }}</td>
                 <td>{{ $teachers->city }} </td>
+                <td><a href="{{ route('view.teachersingledata', ['id' => $teachers->id]) }}">View</a> </td>
             </tr>
         @endforeach
     </table>
