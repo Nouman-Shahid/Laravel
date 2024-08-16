@@ -25,6 +25,7 @@
                 <td>{{ $teachers->email }}</td>
                 <td>{{ $teachers->city }} </td>
                 <td><a href="{{ route('view.teachersingledata', ['id' => $teachers->id]) }}">View</a> </td>
+                <td><a href="{{ route('view.delete', ['id' => $teachers->id]) }}">Delete</a> </td>
             </tr>
         @endforeach
     </table>

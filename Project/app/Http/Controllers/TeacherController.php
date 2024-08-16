@@ -29,4 +29,13 @@ class TeacherController extends Controller
         ]);
         
     }
+    public function deleteUser(string $id)
+    {
+        $teachers = DB::table('teachers')->where('id',$id)->delete();
+
+        if($teachers)
+        {
+            echo "<h3>Data Deleted Successfully</h3>";
+        }
+    }
 }
