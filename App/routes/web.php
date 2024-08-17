@@ -11,3 +11,10 @@ Route::get('/employees/{id}', [EmployeeController::class, 'showSingleEmployees']
 
 // Route for deleting a single employee
 Route::get('/delete/{id}', [EmployeeController::class, 'deleteSingleEmployees'])->name('view.delete');
+
+
+
+Route::post('/add', [EmployeeController::class,'addUser'])->name('addUser');
+
+// Route for Add new user
+Route::view('/newuser','/adduser');
