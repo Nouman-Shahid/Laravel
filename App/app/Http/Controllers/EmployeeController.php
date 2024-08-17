@@ -13,7 +13,7 @@ class EmployeeController extends Controller
     }
 
     public function showSingleEmployees(string $id){
-        $employee = DB::table("employees")->where('id', $id)->first(); // Use first() for a single record
+        $employee = DB::table("employees")->where('id', $id)->get(); // Use first() for a single record
         return view("data", ['data' => $employee]);
     }
 

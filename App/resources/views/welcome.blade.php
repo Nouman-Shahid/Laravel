@@ -23,7 +23,7 @@
 
         th,
         td {
-            padding: 10px;
+            padding: 2vh;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
@@ -40,6 +40,9 @@
         a {
             text-decoration: none;
             color: #007bff;
+            background-color: #ddd;
+            padding: 1.5vh;
+            margin: 1vh;
         }
 
         a:hover {
@@ -49,6 +52,9 @@
 </head>
 
 <body>
+
+    <a href="">Add</a>
+
     <table>
         <thead>
             <tr>
@@ -70,6 +76,7 @@
                     <td>{{ $emp->city }}</td>
                     <td><a href="{{ route('view.employees', ['id' => $emp->id]) }}">View</a>
                         <a href="{{ route('view.delete', ['id' => $emp->id]) }}">Delete</a>
+                        <a href="{{ route('view.delete', ['id' => $emp->id]) }}">Update</a>
                     </td>
                 </tr>
             @endforeach
