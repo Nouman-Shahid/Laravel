@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 
 // Route for showing the list of employees
-Route::get('/', [EmployeeController::class, 'showEmployees'])->name('employees');
+Route::get('/', [EmployeeController::class, 'showEmployees'])->name('view.welcome');
 
 // Route for showing a single employee
 Route::get('/employees/{id}', [EmployeeController::class, 'showSingleEmployees'])->name('view.employees');

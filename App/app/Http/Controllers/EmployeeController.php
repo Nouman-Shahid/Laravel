@@ -26,16 +26,14 @@ class EmployeeController extends Controller
             'email'=> $req->email,
             'city'=> $req->city,
         ]); 
+        return redirect()->route('view.welcome');
     }
 
     //Delete user functionality
     public function deleteSingleEmployees(string $id)
     {
-        $employees = DB::table('employees')->where('id',$id)->delete();
+       DB::table('employees')->where('id',$id)->delete();
+       return redirect()->route("view.welcome");
 
-        if($employees)
-        {
-            echo "<h3>Data Deleted Successfully</h3>";
-        }
     }
 }
