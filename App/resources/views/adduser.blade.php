@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add User</title>
+    <title>Add User Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -72,7 +72,7 @@
 <body>
     <div class="form-container">
         <h2>Add User</h2>
-        <form action="{{ route('addUser') }}" method="POST">
+        <!-- <form action="{{ route('addUser') }}" method="POST"> -->
             @csrf
             <div class="form-group">
                 <label for="name">Name</label>
