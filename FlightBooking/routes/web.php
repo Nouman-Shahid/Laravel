@@ -1,13 +1,25 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('pages.welcome');
+})->name('view.home');
+
+Route::get('/addflight', [AdminController::class, 'insertData']);
 
 
-Route::get('/auth0', [AuthController::class, 'auth']);
-Route::get('/callback', [AuthController::class, 'callback']);
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::get('/signin', function () {
+    return view('auth.signin');
+})->name('view.signin');
+
+Route::get('/signup', function () {
+    return view('auth.signup');
+})->name('view.signup');
+
+
+Route::post('/signingup', [UserController::class, 'signup'])->name('signup');
+Route::post('/signingin', [UserController::class, 'signin'])->name('signin');
+Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
