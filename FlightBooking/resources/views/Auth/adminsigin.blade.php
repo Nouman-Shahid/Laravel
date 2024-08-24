@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    {{ Auth::user()->name }}
+
 </body>
 
 </html>
