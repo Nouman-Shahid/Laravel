@@ -15,9 +15,9 @@
 
 
         <div class="flex space-x-8">
-            <img src="images/social-icons/facebook.png" class="size-[4vh] cursor-pointer">
-            <img src="images/social-icons/instagram.png" class="size-[4vh] cursor-pointer">
-            <img src="images/social-icons/google.png" class="size-[4vh] cursor-pointer">
+            <img src="https://img.icons8.com/?size=50&id=118467&format=png" class="size-[4vh] cursor-pointer">
+            <img src="https://img.icons8.com/?size=64&id=RhYNENh5cxlS&format=png" class="size-[4.3vh] cursor-pointer">
+            <img src="https://img.icons8.com/?size=30&id=60984&format=png" class="size-[4vh] cursor-pointer">
 
         </div>
 

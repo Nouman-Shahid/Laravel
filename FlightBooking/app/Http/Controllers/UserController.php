@@ -39,7 +39,7 @@ class UserController extends BaseController
     public function dashboard()
     {
         if (Auth::check()) {
-            return view('pages.dashboard');
+            return view('pages.userdashboard');
         } else {
             return redirect()->route('view.signin');
         }

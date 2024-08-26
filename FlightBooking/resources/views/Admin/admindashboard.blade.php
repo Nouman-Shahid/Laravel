@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title></title>
-</head>
-
-<body>
-
-    <h1>Admin Dashboard</h1>
-    {{ Auth::user()->name }}
+@extends('layouts.main')
+@extends('Components.navbar')
+@section('title', 'Admin')
 
 
-</body>
+@extends('Components.sidebar')
 
-</html>
+{{-- Dashboard --}}
+@section('content')
+    Admin dashbaord
+@endsection
+
+</div>
+
+@extends('Components.footer')
