@@ -42,7 +42,7 @@ class AdminController extends Controller
     {
         // Check if user is authenticated
         if (!session('authenticated')) {
-            return Redirect::route('auth.signin');
+            return Redirect::route('view.signin');
         }
 
         // Display the dashboard
@@ -80,4 +80,18 @@ class AdminController extends Controller
 
 
     //User Data CRUD
+    public function showUsers()
+    {
+        $data = DB::table('users')->paginate(9);
+
+        return view('admin.adminuser', ['data' => $data]);
+    }
+
+    // Delete User Data
+    public function deleteUserData(string $id)
+    {
+        DB::table('users')->where('id', $id)->delete();
+
+        return redirect()->route("admin.userdata");
+    }
 }

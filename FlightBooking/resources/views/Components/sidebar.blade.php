@@ -15,7 +15,7 @@
                     <img src="https://img.icons8.com/?size=64&id=46906&format=png" class="size-[3vh]">
                     <li>Flight Tickets</li>
                 </a>
-                <a href=""class="flex hover:bg-blue-800 items-center h-[5vh] space-x-4">
+                <a href="{{ route('admin.userdata') }}"class="flex hover:bg-blue-800 items-center h-[5vh] space-x-4">
                     <img src="https://img.icons8.com/?size=48&id=K7ebDTcbruY8&format=png" class="size-[3vh]">
                     <li>Users Data</li>
                 </a>
@@ -27,7 +27,7 @@
                     <img src="https://img.icons8.com/?size=64&id=42850&format=png" class="size-[3vh]">
                     <li>Settings</li>
                 </a>
-                <a href=""class="flex hover:bg-blue-800 items-center h-[5vh] space-x-4">
+                <a href="{{ route('view.home') }}"class="flex hover:bg-blue-800 items-center h-[5vh] space-x-4">
                     <img src="https://img.icons8.com/?size=48&id=13925&format=png" class="size-[3vh]">
                     <li>Logout</li>
                 </a>

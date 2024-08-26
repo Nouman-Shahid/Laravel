@@ -35,7 +35,7 @@ Route::post('/adminsignin', [AdminController::class, 'adminsignin'])->name('admi
 // Dashboard Route
 Route::get('/admindashboard', [AdminController::class, 'showDashboard'])->name('admin.admindashboard');
 
-//Admin data fetching
+//Admin Flight data fetching
 Route::get('/admindashboard/flightdata', [AdminController::class, 'showFlights'])->name('admin.flights');
 
 
@@ -47,4 +47,13 @@ Route::get('/admindashboard/flightdata/addform', function () {
 
 //Admin: Add Flight
 Route::post('/admindashboard/flightdata/addform/addflights', [AdminController::class, 'insertData'])->name('addflight');
-Route::get('/admindashboard/flightdata/addform/deletedata/{id}', [AdminController::class, 'deleteData'])->name('deleteflight');
+//Admin: Delete Flight
+Route::get('/admindashboard/flightdata/deletedata/{id}', [AdminController::class, 'deleteData'])->name('deleteflight');
+
+
+
+//Admin User data fetching
+Route::get('/admindashboard/userdata', [AdminController::class, 'showUsers'])->name('admin.userdata');
+
+//Admin: Delete user
+Route::get('/admindashboard/flightdata/deleteuser/{id}', [AdminController::class, 'deleteUserData'])->name('deleteuser');
