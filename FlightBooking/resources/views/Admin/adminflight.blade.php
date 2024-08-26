@@ -8,7 +8,7 @@
 
     <div class="flex w-[94%] justify-between items-center">
         <p class="text-[3vh] font-bold">Flight's Data</p>
-        <a href="{{ route('addflight') }}" class="bg-green-500 p-2 text-white font-bold">Add New</a>
+        <a href="{{ route('addform') }}" class="bg-green-500 p-2 text-white font-bold">Add New</a>
     </div>
 
     <table class=" w-[96%] bg-white shadow-md rounded-lg overflow-hidden mt-7">
@@ -32,11 +32,16 @@
                     <td class="px-6 py-3 border-b border-gray-300">{{ $flights->amount }}</td>
                     <td class="px-6 py-3 border-b border-gray-300">{{ $flights->depart }}</td>
                     <td class="px-6 py-3 border-b border-gray-300">{{ $flights->arrival }}</td>
-                    <td><a href="">Delete</a></td>
+                    <td><a href="{{ route('deleteflight', ['id' => $flights->id]) }}"
+                            class="bg-red-600 text-white py-1 px-2">Delete</a></td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+    <div class="mt-16">
+
+        {{ $data->links() }}
+    </div>
 @endsection
 
 @extends('components.footer')

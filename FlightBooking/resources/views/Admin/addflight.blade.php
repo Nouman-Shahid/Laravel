@@ -11,7 +11,7 @@
             <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Add Flight </h2>
 
         </div>
-        <form action="#" method="POST" class="mx-auto mt-4 max-w-xl sm:mt-20">
+        <form action="{{ route('addflight') }}" method="POST" class="mx-auto mt-4 max-w-xl sm:mt-20">
             @csrf
             <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                 <div>
@@ -31,7 +31,7 @@
                 <div class="sm:col-span-2">
                     <label for="company" class="block text-sm font-semibold leading-6 text-black">Origin</label>
                     <div class="mt-2.5">
-                        <input type="text" name="Origin" required placeholder="Enter Origin"
+                        <input type="text" name="origin" required placeholder="Enter Origin"
                             class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset shadow-blue-500 ring-blue-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-400 sm:text-sm sm:leading-6">
                     </div>
                 </div>
@@ -58,6 +58,7 @@
                 </button>
             </div>
         </form>
+
     </div>
 @endsection
 

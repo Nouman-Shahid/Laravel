@@ -10,7 +10,6 @@ Route::get('/', function () {
 })->name('view.home');
 
 // Admin Routes
-Route::get('/addflight', [AdminController::class, 'insertData']);
 
 // User Authentication Routes
 Route::get('/usersignin', function () {
@@ -41,7 +40,11 @@ Route::get('/admindashboard/flightdata', [AdminController::class, 'showFlights']
 
 
 
-//Admin : Add Flight
-Route::get('/admindashboard/flightdata/add-flights', function () {
+//Admin : Page Add Flight
+Route::get('/admindashboard/flightdata/addform', function () {
     return view('admin.addflight');
-})->name('addflight');
+})->name('addform');
+
+//Admin: Add Flight
+Route::post('/admindashboard/flightdata/addform/addflights', [AdminController::class, 'insertData'])->name('addflight');
+Route::get('/admindashboard/flightdata/addform/deletedata/{id}', [AdminController::class, 'deleteData'])->name('deleteflight');

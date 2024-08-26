@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     // Hardcoded credentials
     private const VALID_EMAIL = 'admin@gmail.com';
-    private const VALID_PASSWORD = 'admin123'; // This is the hardcoded password
+    private const VALID_PASSWORD = 'admin123';
 
     public function adminsignin(Request $request)
     {
@@ -49,21 +49,35 @@ class AdminController extends Controller
         return view('admin.admindashboard');
     }
 
-    public function insertData()
+
+    // Flight Data CRUD
+    public function insertData(Request $req)
     {
         $flightData = DB::table("flight-data")->insert([
-            'origin' => 'Lahore',
-            'destination' => 'Germany',
-            'depart' => '2024-08-29',
-            'arrival' => '2024-09-09',
-            'amount' => 540000,
+            'origin' => $req->origin,
+            'destination' => $req->destination,
+            'depart' => $req->depart,
+            'arrival' => $req->arrival,
+            'amount' => $req->amount,
         ]);
+        return redirect()->route('admin.flights');
     }
 
     public function showFlights()
     {
-        $data = DB::table('flight-data')->paginate(10);
+        $data = DB::table('flight-data')->paginate(9);
 
         return view('admin.adminflight', ['data' => $data]);
     }
+
+    public function deleteData(string $id)
+    {
+        DB::table('flight-data')->where('id', $id)->delete();
+
+        return redirect()->route("admin.flights");
+    }
+
+
+
+    //User Data CRUD
 }
