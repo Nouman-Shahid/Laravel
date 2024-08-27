@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date("depart");
             $table->date("arrival");
             $table->integer("amount");
+            $table->string('image', 2048);
             $table->timestamps();
         });
     }

@@ -59,6 +59,7 @@ class AdminController extends Controller
             'depart' => $req->depart,
             'arrival' => $req->arrival,
             'amount' => $req->amount,
+            'image' => $req->image
         ]);
         return redirect()->route('admin.flights');
     }

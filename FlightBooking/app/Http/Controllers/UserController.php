@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends BaseController
 {
@@ -32,16 +33,23 @@ class UserController extends BaseController
         ]);
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard');
+            return redirect()->route('user.flights');
         }
     }
 
-    public function dashboard()
+
+
+    //User Dashboard Flights fetching
+    public function showFlights()
     {
-        if (Auth::check()) {
-            return view('pages.userdashboard');
-        } else {
-            return redirect()->route('view.signin');
-        }
+        $data = DB::table('flight-data')->paginate(6);
+
+        return view('pages.userdashboard', ['data' => $data]);
+    }
+    public function showSingleFlights(string $id)
+    {
+        $data = DB::table('flight-data')->where('id', $id)->first();
+
+        return view('pages.flightdescription', ['data' => $data]);
     }
 }

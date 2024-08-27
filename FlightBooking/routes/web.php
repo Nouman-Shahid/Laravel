@@ -22,7 +22,6 @@ Route::get('/usersignup', function () {
 
 Route::post('/signingup', [UserController::class, 'signup'])->name('signup');
 Route::post('/signingin', [UserController::class, 'signin'])->name('signin');
-Route::get('/userdashboard', [UserController::class, 'dashboard'])->name('dashboard');
 
 // Admin Authentication Routes
 Route::get('/adminsignin', function () {
@@ -57,3 +56,11 @@ Route::get('/admindashboard/userdata', [AdminController::class, 'showUsers'])->n
 
 //Admin: Delete user
 Route::get('/admindashboard/flightdata/deleteuser/{id}', [AdminController::class, 'deleteUserData'])->name('deleteuser');
+
+
+
+//UserPage Flight data fetching
+Route::get('/home', [UserController::class, 'showFlights'])->name('user.flights');
+
+//UserPage Single Flight Dara
+Route::get('/home/flightbooking/{id}', [UserController::class, 'showSingleFlights'])->name('user.Singleflights');

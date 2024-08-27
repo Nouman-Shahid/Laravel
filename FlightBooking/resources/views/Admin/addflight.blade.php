@@ -14,7 +14,7 @@
                 <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Add Flight </h2>
 
             </div>
-            <form action="{{ route('addflight') }}" method="POST" class="mx-auto mt-4 max-w-xl sm:mt-20">
+            <form action="{{ route('addflight') }}" method="POST" class="mx-auto mt-4 max-w-xl sm:mt-10">
                 @csrf
                 <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                     <div>
@@ -50,6 +50,13 @@
                         <label for="email" class="block text-sm font-semibold leading-6 text-gray-900">Amount</label>
                         <div class="mt-2.5">
                             <input type="number" name="amount" placeholder="Enter Amount" required
+                                class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset shadow-blue-500 ring-blue-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-400 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="email" class="block text-sm font-semibold leading-6 text-gray-900">Image</label>
+                        <div class="mt-2.5">
+                            <input type="text" name="image" placeholder="Enter Image URL" required
                                 class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset shadow-blue-500 ring-blue-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-400 sm:text-sm sm:leading-6">
                         </div>
                     </div>

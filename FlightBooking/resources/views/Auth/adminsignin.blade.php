@@ -3,6 +3,21 @@
 
 @section('title', 'Admin')
 
+@section('navbarbtns')
+    <div class="flex space-x-4">
+
+        <a href="{{ route('view.signin') }}"
+            class="bg-blue-500 px-3 py-2 font-semibold text-white border-2 border-blue-500 
+                            rounded shadowtransition-all duration-900 ease-in-out hover:bg-transparent
+                             hover:text-blue-500 hover:border-blue-500">Sign
+            in</a>
+        <a href="{{ route('view.signup') }}"
+            class="bg-blue-400 px-3 py-2 font-semibold text-white border-2 border-blue-400 
+                            rounded shadowtransition-all duration-900 ease-in-out hover:bg-transparent
+                             hover:text-blue-400 hover:border-blue-400">Sign
+            up</a>
+    </div>
+@endsection
 @section('content')
     <div class="bg-white relative">
         <div
