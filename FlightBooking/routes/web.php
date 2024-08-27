@@ -5,9 +5,8 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Public Routes
-Route::get('/', function () {
-    return view('pages.welcome');
-})->name('view.home');
+Route::get('/', [UserController::class, 'showHomeFlights'])->name('view.home');
+
 
 // Admin Routes
 
@@ -63,4 +62,4 @@ Route::get('/admindashboard/flightdata/deleteuser/{id}', [AdminController::class
 Route::get('/home', [UserController::class, 'showFlights'])->name('user.flights');
 
 //UserPage Single Flight Dara
-Route::get('/home/flightbooking/{id}', [UserController::class, 'showSingleFlights'])->name('user.Singleflights');
+Route::get('/home/flight-details/{id}', [UserController::class, 'showSingleFlights'])->name('user.Singleflights');

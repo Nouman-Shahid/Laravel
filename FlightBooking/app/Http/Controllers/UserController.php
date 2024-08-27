@@ -46,6 +46,12 @@ class UserController extends BaseController
 
         return view('pages.userdashboard', ['data' => $data]);
     }
+    public function showHomeFlights()
+    {
+        $data = DB::table('flight-data')->paginate(6);
+
+        return view('pages.welcome', ['data' => $data]);
+    }
     public function showSingleFlights(string $id)
     {
         $data = DB::table('flight-data')->where('id', $id)->first();
