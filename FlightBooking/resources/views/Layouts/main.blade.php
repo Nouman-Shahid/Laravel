@@ -19,10 +19,8 @@
     <div class="flex justify-center items-center h-screen w-screen">
 
         @yield('sidebar')
-        <div class="flex flex-col w-[82vw] bg-slate-100 h-screen justify-start items-center mt-10">
 
-            @yield('content')
-        </div>
+        @yield('content')
 
     </div>
 
