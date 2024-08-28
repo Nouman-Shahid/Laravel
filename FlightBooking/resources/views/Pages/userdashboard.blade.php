@@ -5,9 +5,11 @@
 @section('navbarbtns')
     <div class="flex space-x-5 justify-center items-center">
 
-        <a href="{{ route('view.signin') }}">
+        <a href="">
             <img src="https://img.icons8.com/?size=30&id=G7PELQpF8j6g&format=png" class="size-[5vh]">
         </a>
+
+        <p>{{ Auth::user()->id }}</p>
 
         <p
             class="bg-orange-500 rounded-[50%] size-[6vh] flex items-center justify-center font-semibold text-[3.5vh] text-white cursor-pointer">
