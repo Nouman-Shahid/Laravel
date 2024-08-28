@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,8 +21,8 @@ Route::get('/usersignup', function () {
     return view('auth.signup');
 })->name('view.signup');
 
-Route::post('/signingup', [UserController::class, 'signup'])->name('signup');
-Route::post('/signingin', [UserController::class, 'signin'])->name('signin');
+Route::post('/signup', [UserController::class, 'signup'])->name('signup');
+Route::post('/signin', [UserController::class, 'signin'])->name('signin');
 
 // Admin Authentication Routes
 Route::get('/adminsignin', function () {
@@ -63,3 +65,11 @@ Route::get('/home', [UserController::class, 'showFlights'])->name('user.flights'
 
 //UserPage Single Flight Dara
 Route::get('/home/flight-details/{id}', [UserController::class, 'showSingleFlights'])->name('user.Singleflights');
+
+
+// Stripe Checkout 
+Route::post('/home/checkout/{id}', [StripeController::class, 'checkout'])->name('checkout');
+// Stripe Success
+Route::get('/home/payment-success', [StripeController::class, 'success'])->name('success');
+// Stripe Cancel
+Route::get('/home/payment-cancel', [StripeController::class, 'cancel'])->name('cancel');

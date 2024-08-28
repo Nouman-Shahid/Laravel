@@ -18,11 +18,13 @@ class UserController extends BaseController
             'password' => 'required'
         ]);
 
+        $data['password'] = bcrypt($data['password']);
+
         $user = User::create($data);
 
-        if ($user) {
-            return redirect()->route('view.signin');
-        }
+        Auth::login($user);
+
+        return redirect()->route('user.flights');
     }
 
     public function signin(Request $request)
@@ -35,22 +37,23 @@ class UserController extends BaseController
         if (Auth::attempt($credentials)) {
             return redirect()->route('user.flights');
         }
+
+        return back()->withErrors(['email' => 'Invalid credentials']);
     }
-
-
 
     //User Dashboard Flights fetching
     public function showFlights()
     {
-        $data = DB::table('flight-data')->paginate(6);
+        $data = DB::table('flight-data')->get();
 
         return view('pages.userdashboard', ['data' => $data]);
     }
+
     public function showHomeFlights()
     {
-        $data = DB::table('flight-data')->paginate(6);
+        $result = DB::table('flight-data')->paginate(6);
 
-        return view('pages.welcome', ['data' => $data]);
+        return view('pages.welcome', ['data' => $result]);
     }
     public function showSingleFlights(string $id)
     {

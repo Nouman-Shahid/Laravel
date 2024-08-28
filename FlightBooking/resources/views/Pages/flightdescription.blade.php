@@ -28,7 +28,7 @@
 
                 </div>
                 <div class="md:flex-1 px-4">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ $data->origin }} ->
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ $data->origin }} to
                         {{ $data->destination }}</h2>
                     <p class="text-gray-600  text-sm mb-4">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed
@@ -66,9 +66,14 @@
                     </div>
                     <div class="flex -mx-2 mb-4 mt-14">
                         <div class="w-1/2 px-2">
-                            <button
-                                class="w-full bg-green-500  text-white py-2 px-4 rounded-full font-bold hover:bg-green-600">
-                                Pay</button>
+                            <form action="{{ route('checkout', ['id' => $data->id]) }}" method="POST">
+                                @csrf
+                                <input type="hidden" name='_token' value="{{ csrf_token() }}">
+                                <button
+                                    class="w-full bg-green-500  text-white py-2 px-4 rounded-full font-bold hover:bg-green-600">
+                                    Book Flight
+                                </button>
+                            </form>
                         </div>
                         <div class="w-1/2
                                 px-2">
