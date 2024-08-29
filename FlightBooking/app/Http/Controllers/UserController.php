@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\mailsender;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Stripe\Stripe;
 use Stripe\Checkout\Session as StripeSession;
 
@@ -112,6 +114,10 @@ class UserController extends BaseController
     public function success($flightid)
     {
         $flight = DB::table('flight-data')->where('id', $flightid)->first();
+        if (!$flight) {
+            return redirect()->back()->withErrors('Flight not found.');
+        }
+
         $user = Auth::user();
 
         DB::table('booked-flights')->insert([
@@ -119,6 +125,28 @@ class UserController extends BaseController
             'user_email' => $user->email,
             'flight_id' => $flightid,
         ]);
+
+        $message = <<<EOT
+Dear {$user->name},
+
+Thank you for choosing AirPlan for your flight.
+
+Here are the details of your flight:
+
+Your flight will depart from {$flight->origin} at 7:30 AM and arrive at {$flight->destination} at 3:00 PM.
+You will be traveling from {$flight->depart} to {$flight->arrival}.
+The cost of your flight ticket is PKR {$flight->amount}.
+
+We wish you a safe and enjoyable journey!
+
+Best regards,
+The AirPlan Team
+EOT;
+
+
+        $subject = 'Booking Confirmation: Your Flight with AirPlan';
+
+        Mail::to($user->email)->send(new mailsender($message, $subject));
 
         return view('pages.success', ['data' => $flight]);
     }
