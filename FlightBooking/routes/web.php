@@ -69,6 +69,16 @@ Route::get('/home/flight-details/{id}', [UserController::class, 'showSingleFligh
 // Stripe Checkout 
 Route::post('/home/checkout/{id}', [UserController::class, 'checkout'])->name('checkout');
 // Stripe Success
-Route::get('/home/payment-success', [UserController::class, 'success'])->name('success');
+Route::get('/home/payment-success/{flightid}', [UserController::class, 'success'])->name('success');
 // Stripe Cancel
 Route::get('/home/payment-cancel', [UserController::class, 'cancel'])->name('cancel');
+
+
+//Booked Flights
+Route::get('/home/bookings', [UserController::class, 'cart'])->name('bookedFlights');
+
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+
+
+//Cancel Flight
+Route::get('/cancelflight/{id}', [UserController::class, 'cancelFlight'])->name('cancelflight');

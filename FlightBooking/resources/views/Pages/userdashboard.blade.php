@@ -5,22 +5,23 @@
 @section('navbarbtns')
     <div class="flex space-x-5 justify-center items-center">
 
-        <a href="">
-            <img src="https://img.icons8.com/?size=30&id=G7PELQpF8j6g&format=png" class="size-[5vh]">
+        <a href="{{ route('logout') }}" class="bg-blue-500 rounded-xl hover:bg-blue-600 p-2 text-white text-semibold">
+            Logout
         </a>
-
-        <p>{{ Auth::user()->id }}</p>
+        <a href="{{ route('bookedFlights') }}">
+            <img src="https://cdn-icons-png.flaticon.com/128/2570/2570687.png" class="size-[5vh]">
+        </a>
 
         <p
             class="bg-orange-500 rounded-[50%] size-[6vh] flex items-center justify-center font-semibold text-[3.5vh] text-white cursor-pointer">
-            {{ substr(Auth::user()->name, 0, 1) }}</p>
+            {{ substr(Auth::user()->name, 0, 1) }}
+        </p>
     </div>
+
 @endsection
 
 @section('content')
     <div class="flex flex-col w-screen bg-slate-100 h-auto justify-start items-center">
-
-
 
         <div class="relative inline-block">
             <img src="https://www.qatarairways.com/content/dam/images/renditions/horizontal-1/campaigns/global/destinations-promo/hn-summer-destinations-europe.jpg"

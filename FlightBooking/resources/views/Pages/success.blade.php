@@ -12,7 +12,9 @@
             </svg>
             <div class="text-center">
                 <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">Payment Successfull!</h3>
-                <p class="text-gray-600 my-2">Thank you for booking a flight {{ $data->id }}</p>
+                <p class="text-gray-600 my-2">You booked a flight (<span class="text-green-700 font-bold">{{ $data->origin }}
+                        to {{ $data->destination }}</span>)
+                </p>
                 <p> Have a great flight! </p>
                 <div class="py-10 text-center">
                     <a href="{{ route('user.flights') }}"

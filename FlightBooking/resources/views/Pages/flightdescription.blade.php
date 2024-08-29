@@ -5,14 +5,19 @@
 @section('navbarbtns')
     <div class="flex space-x-5 justify-center items-center">
 
-        <a href="{{ route('view.signin') }}">
-            <img src="https://img.icons8.com/?size=30&id=G7PELQpF8j6g&format=png" class="size-[5vh]">
+        <a href="{{ route('logout') }}" class="bg-blue-500 rounded-xl hover:bg-blue-600 p-2 text-white text-semibold">
+            Logout
+        </a>
+        <a href="{{ route('bookedFlights') }}">
+            <img src="https://cdn-icons-png.flaticon.com/128/2570/2570687.png" class="size-[5vh]">
         </a>
 
         <p
             class="bg-orange-500 rounded-[50%] size-[6vh] flex items-center justify-center font-semibold text-[3.5vh] text-white cursor-pointer">
-            {{ substr(Auth::user()->name, 0, 1) }}</p>
+            {{ substr(Auth::user()->name, 0, 1) }}
+        </p>
     </div>
+
 @endsection
 
 

@@ -43,6 +43,14 @@ class UserController extends BaseController
         return back()->withErrors(['email' => 'Invalid credentials']);
     }
 
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('view.home');
+    }
+
+
     //User Dashboard Flights fetching
     public function showFlights()
     {
@@ -69,15 +77,14 @@ class UserController extends BaseController
 
     public function checkout(string $flightId)
     {
-        // Fetch flight data from database
         $flight = DB::table('flight-data')->where('id', $flightId)->first();
 
+        // Set the amount in PKR
         $flight->amount = $flight->amount * 100;
 
-        // Set your Stripe secret key
+        //Stripe secret key
         Stripe::setApiKey(config('stripe.sk'));
 
-        // Create a Stripe checkout session
         $session = StripeSession::create([
             'line_items' => [
                 [
@@ -87,7 +94,6 @@ class UserController extends BaseController
                             'name' => "{$flight->origin} to {$flight->destination}: 1 person",
                             'description' => "Departure: {$flight->depart}, Arrival: {$flight->arrival}",
                             'images' => ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsOr15qGAmsNK5PioppawAAUhutpzPc2mS6g&s'],
-
                         ],
                         'unit_amount' => $flight->amount,
                     ],
@@ -95,21 +101,51 @@ class UserController extends BaseController
                 ],
             ],
             'mode' => 'payment',
-            'success_url' => route('success'),
+            'success_url' => route('success', ['flightid' => $flightId]),
             'cancel_url' => route('cancel'),
         ]);
 
-        // Redirect to Stripe checkout
         return redirect()->away($session->url);
     }
 
-    public function success()
+
+    public function success($flightid)
     {
-        return view('pages.success');
+        $flight = DB::table('flight-data')->where('id', $flightid)->first();
+        $user = Auth::user();
+
+        DB::table('booked-flights')->insert([
+            'user_id' => $user->id,
+            'user_email' => $user->email,
+            'flight_id' => $flightid,
+        ]);
+
+        return view('pages.success', ['data' => $flight]);
     }
+
+
     public function cancel()
     {
 
         return view('pages.cancel');
+    }
+
+
+    public function cart()
+    {
+        $user = Auth::user();
+        $results = DB::table('booked-flights as b')
+            ->join('flight-data as f', 'b.flight_id', '=', 'f.id')
+            ->where('b.user_id', $user->id)
+            ->select('f.origin', 'f.destination', 'f.depart', 'f.arrival', 'f.image', 'f.amount', 'b.id')
+            ->get();
+        return view('pages.bookedFlights', ['data' => $results]);
+    }
+    public function cancelFlight($id)
+    {
+        $user = Auth::user();
+        $results = DB::table('booked-flights as b')->where('id', $id)->delete();
+
+        return redirect()->route('bookedFlights', ['data' => $results]);
     }
 }
