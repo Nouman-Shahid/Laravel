@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SocialiteController;
-use App\Http\Controllers\StripeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -68,8 +67,8 @@ Route::get('/home/flight-details/{id}', [UserController::class, 'showSingleFligh
 
 
 // Stripe Checkout 
-Route::post('/home/checkout/{id}', [StripeController::class, 'checkout'])->name('checkout');
+Route::post('/home/checkout/{id}', [UserController::class, 'checkout'])->name('checkout');
 // Stripe Success
-Route::get('/home/payment-success', [StripeController::class, 'success'])->name('success');
+Route::get('/home/payment-success', [UserController::class, 'success'])->name('success');
 // Stripe Cancel
-Route::get('/home/payment-cancel', [StripeController::class, 'cancel'])->name('cancel');
+Route::get('/home/payment-cancel', [UserController::class, 'cancel'])->name('cancel');
