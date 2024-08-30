@@ -24,16 +24,10 @@ class AdminController extends Controller
         $password = $request->input('password');
 
         if ($email === self::VALID_EMAIL && $password === self::VALID_PASSWORD) {
-            // Authentication passed, start the session
             $request->session()->put('authenticated', true);
 
             return Redirect::route('admin.admindashboard');
         }
-
-        // Authentication failed, redirect back with an error
-        return Redirect::back()->withErrors([
-            'email' => 'Invalid credentials provided.',
-        ]);
     }
 
     public function showDashboard()
@@ -60,7 +54,7 @@ class AdminController extends Controller
     // Flight Data Insert
     public function insertData(Request $req)
     {
-        $flightData = DB::table("flight-data")->insert([
+        DB::table("flight-data")->insert([
             'origin' => $req->origin,
             'destination' => $req->destination,
             'depart' => $req->depart,
@@ -68,7 +62,8 @@ class AdminController extends Controller
             'amount' => $req->amount,
             'image' => $req->image
         ]);
-        return redirect()->route('admin.flights');
+        $message = "Flight data added successfully";
+        return redirect()->route("admin.flights")->with('success', $message);
     }
 
     //Fight Data Read
@@ -84,8 +79,10 @@ class AdminController extends Controller
     {
         DB::table('flight-data')->where('id', $id)->delete();
 
-        return redirect()->route("admin.flights");
+        $message = "Flight data with id: {$id} deleted successfully";
+        return redirect()->route("admin.flights")->with('success', $message);
     }
+
 
 
 
@@ -102,7 +99,8 @@ class AdminController extends Controller
     {
         DB::table('users')->where('id', $id)->delete();
 
-        return redirect()->route("admin.userdata");
+        $message = "User with id: {$id} removed successfully";
+        return redirect()->route("admin.userdata")->with('success', $message);
     }
 
     // Show Booked Flights
@@ -116,6 +114,8 @@ class AdminController extends Controller
     public function deleteBookedFlights($id)
     {
         $data = DB::table("booked-flights")->where("id", $id)->delete();
-        return redirect()->route("admin.bookedFlights");
+
+        $message = "Booked Flight with id: {$id} cancelled successfully";
+        return redirect()->route("admin.bookedFlights")->with('success', $message);
     }
 }

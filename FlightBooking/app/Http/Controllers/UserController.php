@@ -174,6 +174,7 @@ class UserController extends BaseController
         $user = Auth::user();
         $results = DB::table('booked-flights as b')->where('id', $id)->delete();
 
-        return redirect()->route('bookedFlights', ['data' => $results]);
+        $message = "You cancelled flight with id: {$id}";
+        return redirect()->route('bookedFlights', ['data' => $results])->with('success', $message);
     }
 }
