@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\mailsender;
+use App\Mail\signupmail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -27,6 +28,24 @@ class UserController extends BaseController
         $user = User::create($data);
 
         Auth::login($user);
+
+        $user = Auth::user();
+        $message = <<<EOT
+        Welcome to Airplan{$user->name}!
+
+        Hi there,
+        Thanks for signing up for AirPlan.
+        
+        We're thrilled to have you here! Explore our fantastic deals and discounts.
+
+        Best regards,
+        The AirPlan Team
+        EOT;
+
+
+        $subject = 'Thanks for signing up for AirPlan.';
+
+        Mail::to($user->email)->send(new signupmail($message, $subject));
 
         return redirect()->route('user.flights');
     }
@@ -114,9 +133,7 @@ class UserController extends BaseController
     public function success($flightid)
     {
         $flight = DB::table('flight-data')->where('id', $flightid)->first();
-        if (!$flight) {
-            return redirect()->back()->withErrors('Flight not found.');
-        }
+
 
         $user = Auth::user();
 
@@ -172,9 +189,37 @@ class UserController extends BaseController
     public function cancelFlight($id)
     {
         $user = Auth::user();
-        $results = DB::table('booked-flights as b')->where('id', $id)->delete();
 
-        $message = "You cancelled flight with id: {$id}";
-        return redirect()->route('bookedFlights', ['data' => $results])->with('success', $message);
+        $flight = DB::table('booked-flights as b')
+            ->join('flight-data as f', 'b.flight_id', '=', 'f.id')
+            ->where('b.user_id', $user->id)
+            ->select('f.origin', 'f.destination', 'f.depart', 'f.arrival', 'f.image', 'f.amount', 'b.id')
+            ->first();
+
+
+        DB::table('booked-flights')->where('id', $id)->delete();
+
+        $message = <<<EOT
+    Dear {$user->name},
+
+    You have cancelled the flight with the following details:
+
+    Departure: {$flight->origin} at 7:30 AM
+    Arrival: {$flight->destination} at 3:00 PM
+    Traveling from: {$flight->depart}
+    Arrival: {$flight->arrival}
+    Cost of ticket: PKR {$flight->amount}
+
+    Best regards,
+    The AirPlan Team
+    EOT;
+
+        $subject = 'Booking Cancellation: Your flight has been cancelled';
+
+        // Send email
+        Mail::to($user->email)->send(new SignupMail($message, $subject));
+
+        // Redirect with success message
+        return redirect()->route('bookedFlights')->with('success', 'Your flight has been successfully cancelled.');
     }
 }
