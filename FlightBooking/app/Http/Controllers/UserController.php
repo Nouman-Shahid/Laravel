@@ -18,9 +18,9 @@ class UserController extends BaseController
     public function signup(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required',
+            'name' => 'required|min:3',
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required|min:8'
         ]);
 
         $data['password'] = bcrypt($data['password']);
@@ -54,7 +54,7 @@ class UserController extends BaseController
     {
         $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required|min:8'
         ]);
 
         if (Auth::attempt($credentials)) {

@@ -47,26 +47,41 @@
                   absolute">
                                     Name</p>
                                 <input placeholder="John" name="name" type="text" required
-                                    class="border placeholder-gray-400 focus:outline-none
+                                    class="border-2 placeholder-gray-400 focus:outline-none
                   focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white
-                  border-gray-300 rounded-md" />
+                  @error('name') border-red-600 @enderror rounded-md" />
+                                <span class="text-red-600">
+                                    @error('name')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
                             <div class="relative">
                                 <p
                                     class="bg-white pt-0 pr-2 pb-0 pl-2 -mt-3 mr-0 mb-0 ml-2 font-medium text-gray-600 absolute">
                                     Email</p>
-                                <input placeholder="123@ex.com" type="text" name="email" required
-                                    class="border placeholder-gray-400 focus:outline-none
-                  focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white
-                  border-gray-300 rounded-md" />
+                                <input placeholder="name@example.com" type="text" name="email" required
+                                    class="border-2 placeholder-gray-400 focus:outline-none
+                  focus:border-black w-full @error('email') border-red-600 @enderror pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white
+                   rounded-md" />
+                                <span class="text-red-600">
+                                    @error('email')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
                             <div class="relative">
                                 <p
                                     class="bg-white pt-0 pr-2 pb-0 pl-2 -mt-3 mr-0 mb-0 ml-2 font-medium text-gray-600 absolute">
                                     Password</p>
                                 <input placeholder="password" type="password" name="password" required
-                                    class="border placeholder-gray-400 focus:outline-nonefocus:border-black w-full pt-4 pr-4 pb-4 pl-4
-                                     mt-2 mr-0 mb-0 ml-0 text-base block bg-white border-gray-300 rounded-md" />
+                                    class="border-2 placeholder-gray-400 focus:outline-nonefocus:border-black w-full pt-4 pr-4 pb-4 pl-4
+                                     mt-2 mr-0 mb-0 ml-0 text-base block bg-white @error('password') border-red-600 @enderror rounded-md" />
+                                <span class="text-red-600">
+                                    @error('password')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
 
                             <div class="relative">

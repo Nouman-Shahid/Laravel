@@ -17,7 +17,7 @@ class AdminController extends Controller
         // Validate the form data
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|min:8',
         ]);
 
         $email = $request->input('email');
