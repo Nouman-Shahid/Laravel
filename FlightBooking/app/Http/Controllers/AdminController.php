@@ -42,7 +42,18 @@ class AdminController extends Controller
         if (!session('authenticated')) {
             return Redirect::route('view.signin');
         }
-        return view('admin.admindashboard');
+
+
+        // Fetch data
+        $userCount = DB::table('users')->count();
+        $flightCount = DB::table('flight-data')->count();
+        $bookedFlightCount = DB::table('booked-flights')->count();
+
+        return view('admin.admindashboard', [
+            'userCount' => $userCount,
+            'flightCount' => $flightCount,
+            'bookedFlightCount' => $bookedFlightCount,
+        ]);
     }
 
 

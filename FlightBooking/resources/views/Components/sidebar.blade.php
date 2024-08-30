@@ -2,7 +2,7 @@
     {{-- sidebar --}}
     <div class="flex flex-col w-[18vw] text-white bg-[#111127] h-screen p-5">
         <div class="flex">
-            <p class="font-mono text-[3vh] ">Admin Dashboard</p>
+            <p class="font-mono text-[3vh] ">Admin Panel</p>
         </div>
 
         <div class="flex mt-10">

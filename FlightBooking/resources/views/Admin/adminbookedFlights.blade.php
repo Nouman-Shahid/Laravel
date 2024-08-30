@@ -9,7 +9,7 @@
 
 
         <div class="flex w-[94%] justify-between items-center">
-            <p class="text-[3vh] font-bold">User's Data</p>
+            <p class="text-[3vh] font-bold">Booked Flights</p>
         </div>
 
         <table class=" w-[96%] bg-white shadow-md rounded-lg overflow-hidden mt-7">
@@ -32,7 +32,7 @@
                         <td class="px-6 py-3 border-b border-gray-300">{{ $bookedFlights->flight_id }}</td>
                         <td class="px-6 py-3 border-b border-gray-300">{{ $bookedFlights->created_at }}</td>
                         <td><a href="{{ route('admin.deletebookedFlights', ['id' => $bookedFlights->id]) }}"
-                                class="bg-red-600 text-white py-1 px-2">Remove</a></td>
+                                class="bg-red-600 text-white py-1 px-2">Cancel Flight</a></td>
                     </tr>
                 @endforeach
             </tbody>
