@@ -1,5 +1,4 @@
 @extends('layouts.main')
-@extends('components.navbar')
 @section('title', 'Admin')
 @extends('components.sidebar')
 
@@ -73,6 +72,3 @@
         </div>
     </div>
 @endsection
-
-
-@extends('components.footer')

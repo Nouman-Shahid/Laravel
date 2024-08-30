@@ -23,12 +23,10 @@ class AdminController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
 
-        // Check credentials
         if ($email === self::VALID_EMAIL && $password === self::VALID_PASSWORD) {
             // Authentication passed, start the session
             $request->session()->put('authenticated', true);
 
-            // Redirect to admin dashboard
             return Redirect::route('admin.admindashboard');
         }
 
@@ -44,13 +42,11 @@ class AdminController extends Controller
         if (!session('authenticated')) {
             return Redirect::route('view.signin');
         }
-
-        // Display the dashboard
         return view('admin.admindashboard');
     }
 
 
-    // Flight Data CRUD
+    // Flight Data Insert
     public function insertData(Request $req)
     {
         $flightData = DB::table("flight-data")->insert([
@@ -64,6 +60,7 @@ class AdminController extends Controller
         return redirect()->route('admin.flights');
     }
 
+    //Fight Data Read
     public function showFlights()
     {
         $data = DB::table('flight-data')->paginate(9);
@@ -71,6 +68,7 @@ class AdminController extends Controller
         return view('admin.adminflight', ['data' => $data]);
     }
 
+    //Flight Data Delete
     public function deleteData(string $id)
     {
         DB::table('flight-data')->where('id', $id)->delete();
@@ -80,7 +78,7 @@ class AdminController extends Controller
 
 
 
-    //User Data CRUD
+    //User Data Read
     public function showUsers()
     {
         $data = DB::table('users')->paginate(9);
@@ -94,5 +92,19 @@ class AdminController extends Controller
         DB::table('users')->where('id', $id)->delete();
 
         return redirect()->route("admin.userdata");
+    }
+
+    // Show Booked Flights
+    public function showBookedFlights()
+    {
+        $data = DB::table("booked-flights")->paginate(9);
+        return view("admin.adminbookedFlights", ["data" => $data]);
+    }
+
+    // Delete Booked Flights
+    public function deleteBookedFlights($id)
+    {
+        $data = DB::table("booked-flights")->where("id", $id)->delete();
+        return redirect()->route("admin.bookedFlights");
     }
 }

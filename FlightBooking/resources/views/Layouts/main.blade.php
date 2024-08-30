@@ -16,7 +16,7 @@
 
 
 
-    <div class="flex justify-center items-center min-h-screen h-auto w-screen">
+    <div class="flex  min-h-screen h-auto w-screen">
 
         @yield('sidebar')
 

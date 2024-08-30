@@ -1,13 +1,12 @@
 @extends('layouts.main')
 @section('title', 'Admin')
-@extends('Components.navbar')
 
 @extends('components.sidebar')
 
 {{-- Dashboard --}}
 @section('content')
 
-    <div class="flex flex-col w-[82vw] bg-slate-100 h-screen justify-start items-center mt-20">
+    <div class="flex flex-col w-[82vw] bg-slate-100 h-auto justify-start items-center mt-20">
 
 
         <div class="flex w-[94%] justify-between items-center">
@@ -49,5 +48,3 @@
 
     </div>
 @endsection
-
-@extends('components.footer')

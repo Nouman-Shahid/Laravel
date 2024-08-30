@@ -5,11 +5,6 @@ use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-// Public Routes
-Route::get('/', [UserController::class, 'showHomeFlights'])->name('view.home');
-
-
-// Admin Routes
 
 // User Authentication Routes
 Route::get('/usersignin', function () {
@@ -20,23 +15,10 @@ Route::get('/usersignup', function () {
     return view('auth.signup');
 })->name('view.signup');
 
-Route::post('/signup', [UserController::class, 'signup'])->name('signup');
-Route::post('/signin', [UserController::class, 'signin'])->name('signin');
-
 // Admin Authentication Routes
 Route::get('/adminsignin', function () {
     return view('auth.adminsignin');
 })->name('admin.signin');
-
-// Define a POST route for admin sign-in
-Route::post('/adminsignin', [AdminController::class, 'adminsignin'])->name('admin.signin');
-
-// Dashboard Route
-Route::get('/admindashboard', [AdminController::class, 'showDashboard'])->name('admin.admindashboard');
-
-//Admin Flight data fetching
-Route::get('/admindashboard/flightdata', [AdminController::class, 'showFlights'])->name('admin.flights');
-
 
 
 //Admin : Page Add Flight
@@ -44,41 +26,72 @@ Route::get('/admindashboard/flightdata/addform', function () {
     return view('admin.addflight');
 })->name('addform');
 
-//Admin: Add Flight
-Route::post('/admindashboard/flightdata/addform/addflights', [AdminController::class, 'insertData'])->name('addflight');
-//Admin: Delete Flight
-Route::get('/admindashboard/flightdata/deletedata/{id}', [AdminController::class, 'deleteData'])->name('deleteflight');
 
 
 
-//Admin User data fetching
-Route::get('/admindashboard/userdata', [AdminController::class, 'showUsers'])->name('admin.userdata');
+// User Controller Methods
 
-//Admin: Delete user
-Route::get('/admindashboard/flightdata/deleteuser/{id}', [AdminController::class, 'deleteUserData'])->name('deleteuser');
+Route::controller(UserController::class)->group(function () {
+
+    // Public Routes
+    Route::get('/', 'showHomeFlights')->name('view.home');
+
+    //Signin and Signup
+    Route::post('/signup', 'signup')->name('signup');
+    Route::post('/signin', 'signin')->name('signin');
+
+    //UserPage Flight data fetching
+    Route::get('/home', 'showFlights')->name('user.flights');
+
+    //UserPage Single Flight Dara
+    Route::get('/home/flight-details/{id}', 'showSingleFlights')->name('user.Singleflights');
+
+    // Stripe Checkout 
+    Route::post('/home/checkout/{id}', 'checkout')->name('checkout');
+    // Stripe Success
+    Route::get('/home/payment-success/{flightid}', 'success')->name('success');
+    // Stripe Cancel
+    Route::get('/home/payment-cancel', 'cancel')->name('cancel');
+
+    //Booked Flights
+    Route::get('/home/bookings', 'cart')->name('bookedFlights');
+
+    //Logout User
+    Route::get('/logout', 'logout')->name('logout');
+
+    //Cancel Flight
+    Route::get('/cancelflight/{id}', 'cancelFlight')->name('cancelflight');
+});
 
 
 
-//UserPage Flight data fetching
-Route::get('/home', [UserController::class, 'showFlights'])->name('user.flights');
 
-//UserPage Single Flight Dara
-Route::get('/home/flight-details/{id}', [UserController::class, 'showSingleFlights'])->name('user.Singleflights');
+// Admin Controller Methods
 
+Route::controller(AdminController::class)->group(function () {
+    // Define a POST route for admin sign-in
+    Route::post('/adminsignin', 'adminsignin')->name('admin.signin');
 
-// Stripe Checkout 
-Route::post('/home/checkout/{id}', [UserController::class, 'checkout'])->name('checkout');
-// Stripe Success
-Route::get('/home/payment-success/{flightid}', [UserController::class, 'success'])->name('success');
-// Stripe Cancel
-Route::get('/home/payment-cancel', [UserController::class, 'cancel'])->name('cancel');
+    // Dashboard Route
+    Route::get('/admindashboard', 'showDashboard')->name('admin.admindashboard');
 
+    //Admin Flight data fetching
+    Route::get('/admindashboard/flightdata', 'showFlights')->name('admin.flights');
 
-//Booked Flights
-Route::get('/home/bookings', [UserController::class, 'cart'])->name('bookedFlights');
+    //Admin: Add Flight
+    Route::post('/admindashboard/flightdata/addform/addflights', 'insertData')->name('addflight');
+    //Admin: Delete Flight
+    Route::get('/admindashboard/flightdata/deletedata/{id}', 'deleteData')->name('deleteflight');
 
-Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+    //Admin User data fetching
+    Route::get('/admindashboard/userdata', 'showUsers')->name('admin.userdata');
 
+    //Admin: Delete user
+    Route::get('/admindashboard/flightdata/deleteuser/{id}', 'deleteUserData')->name('deleteuser');
 
-//Cancel Flight
-Route::get('/cancelflight/{id}', [UserController::class, 'cancelFlight'])->name('cancelflight');
+    //Admin: Booked Flights Fetching
+    Route::get('/admindashboard/booked-flights', 'showBookedFlights')->name('admin.bookedFlights');
+
+    //Admin:Delete Booked Flights 
+    Route::get('/admindashboard/booked-flights/delete-booked-flight/{id}', 'deleteBookedFlights')->name('admin.deletebookedFlights');
+});

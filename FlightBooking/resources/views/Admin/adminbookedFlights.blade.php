@@ -16,20 +16,22 @@
             <thead>
                 <tr class="bg-gray-200 text-center">
                     <th class="px-6 py-3 border-b border-gray-300">Id</th>
-                    <th class="px-6 py-3 border-b border-gray-300"> Name</th>
-                    <th class="px-6 py-3 border-b border-gray-300">Email</th>
-                    <th class="px-6 py-3 border-b border-gray-300">Day Joined</th>
+                    <th class="px-6 py-3 border-b border-gray-300"> User Id</th>
+                    <th class="px-6 py-3 border-b border-gray-300">User Email</th>
+                    <th class="px-6 py-3 border-b border-gray-300">Flight Id</th>
+                    <th class="px-6 py-3 border-b border-gray-300">Booked Date</th>
                     <th class="px-6 py-3 border-b border-gray-300">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($data as $item => $user)
+                @foreach ($data as $item => $bookedFlights)
                     <tr class="hover:bg-gray-50 text-center">
-                        <td class="px-6 py-3 border-b border-gray-300">{{ $user->id }}</td>
-                        <td class="px-6 py-3 border-b border-gray-300">{{ $user->name }}</td>
-                        <td class="px-6 py-3 border-b border-gray-300">{{ $user->email }}</td>
-                        <td class="px-6 py-3 border-b border-gray-300">{{ $user->created_at }}</td>
-                        <td><a href="{{ route('deleteuser', ['id' => $user->id]) }}"
+                        <td class="px-6 py-3 border-b border-gray-300">{{ $bookedFlights->id }}</td>
+                        <td class="px-6 py-3 border-b border-gray-300">{{ $bookedFlights->user_id }}</td>
+                        <td class="px-6 py-3 border-b border-gray-300">{{ $bookedFlights->user_email }}</td>
+                        <td class="px-6 py-3 border-b border-gray-300">{{ $bookedFlights->flight_id }}</td>
+                        <td class="px-6 py-3 border-b border-gray-300">{{ $bookedFlights->created_at }}</td>
+                        <td><a href="{{ route('admin.deletebookedFlights', ['id' => $bookedFlights->id]) }}"
                                 class="bg-red-600 text-white py-1 px-2">Remove</a></td>
                     </tr>
                 @endforeach

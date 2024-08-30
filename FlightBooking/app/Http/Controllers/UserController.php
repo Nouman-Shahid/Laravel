@@ -127,21 +127,21 @@ class UserController extends BaseController
         ]);
 
         $message = <<<EOT
-Dear {$user->name},
+        Dear {$user->name},
 
-Thank you for choosing AirPlan for your flight.
+        Thank you for choosing AirPlan for your flight.
 
-Here are the details of your flight:
+        Here are the details of your flight:
 
-Your flight will depart from {$flight->origin} at 7:30 AM and arrive at {$flight->destination} at 3:00 PM.
-You will be traveling from {$flight->depart} to {$flight->arrival}.
-The cost of your flight ticket is PKR {$flight->amount}.
+        Your flight will depart from {$flight->origin} at 7:30 AM and arrive at {$flight->destination} at 3:00 PM.
+        You will be traveling from {$flight->depart} to {$flight->arrival}.
+        The cost of your flight ticket is PKR {$flight->amount}.
 
-We wish you a safe and enjoyable journey!
+        We wish you a safe and enjoyable journey!
 
-Best regards,
-The AirPlan Team
-EOT;
+        Best regards,
+        The AirPlan Team
+        EOT;
 
 
         $subject = 'Booking Confirmation: Your Flight with AirPlan';

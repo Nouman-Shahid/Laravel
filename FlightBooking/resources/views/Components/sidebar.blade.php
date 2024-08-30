@@ -19,7 +19,7 @@
                     <img src="https://img.icons8.com/?size=48&id=K7ebDTcbruY8&format=png" class="size-[3vh]">
                     <li>Users Data</li>
                 </a>
-                <a href=""class="flex hover:bg-blue-800 items-center h-[5vh] space-x-4">
+                <a href="{{ route('admin.bookedFlights') }}"class="flex hover:bg-blue-800 items-center h-[5vh] space-x-4">
                     <img src="https://img.icons8.com/?size=80&id=SgATUH6y3S3X&format=png" class="size-[3vh]">
                     <li>Booked Flights</li>
                 </a>
