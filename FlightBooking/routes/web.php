@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BookFlightController;
+use App\Http\Controllers\FlightDataController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -33,19 +35,33 @@ Route::get('/admindashboard/flightdata/addform', function () {
 
 Route::controller(UserController::class)->group(function () {
 
-    // Public Routes
-    Route::get('/', 'showHomeFlights')->name('view.home');
-
     //Signin and Signup
     Route::post('/signup', 'signup')->name('signup');
     Route::post('/signin', 'signin')->name('signin');
+
+    //Logout User
+    Route::get('/logout', 'logout')->name('logout');
+});
+
+
+// Flights Data Controller Methods
+
+Route::controller(FlightDataController::class)->group(function () {
+
+    Route::get('/', 'showHomeFlights')->name('view.home');
 
     //UserPage Flight data fetching
     Route::get('/home', 'showFlights')->name('user.flights');
 
     //UserPage Single Flight Dara
     Route::get('/home/flight-details/{id}', 'showSingleFlights')->name('user.Singleflights');
+});
 
+
+
+// Booked Flights Controller Methods
+
+Route::controller(BookFlightController::class)->group(function () {
     // Stripe Checkout 
     Route::post('/home/checkout/{id}', 'checkout')->name('checkout');
     // Stripe Success
@@ -56,13 +72,10 @@ Route::controller(UserController::class)->group(function () {
     //Booked Flights
     Route::get('/home/bookings', 'cart')->name('bookedFlights');
 
-    //Logout User
-    Route::get('/logout', 'logout')->name('logout');
 
     //Cancel Flight
     Route::get('/cancelflight/{id}', 'cancelFlight')->name('cancelflight');
 });
-
 
 
 
