@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Stripe\Stripe;
 use Stripe\Checkout\Session as StripeSession;
-
 class UserController extends BaseController
 {
     public function signup(Request $request)
