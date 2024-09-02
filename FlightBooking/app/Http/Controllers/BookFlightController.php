@@ -82,23 +82,21 @@ class BookFlightController extends Controller
     public function cart()
     {
         $user = Auth::user();
-        $results = DB::table('booked-flights as b')
-            ->join('flight-data as f', 'b.flight_id', '=', 'f.id')
-            ->where('b.user_id', $user->id)
-            ->select('f.origin', 'f.destination', 'f.depart', 'f.arrival', 'f.image', 'f.amount', 'b.id')
+
+        $results = BookFlight::with('flightData')
+            ->where('user_id', $user->id)
             ->get();
+
         return view('pages.bookedFlights', ['data' => $results]);
     }
-    public function cancelFlight($id)
+
+    public function cancelFlight($flightid)
     {
         $user = Auth::user();
-        $flight = DB::table('booked-flights as b')
-            ->join('flight-data as f', 'b.flight_id', '=', 'f.id')
-            ->where('b.user_id', $user->id)
-            ->select('f.origin', 'f.destination', 'f.depart', 'f.arrival', 'f.image', 'f.amount', 'b.id')
-            ->first();
+        $booking = BookFlight::with('flightData')->where('user_id', $user->id)->where('id', $flightid)->firstOrFail();
+        $flight = $booking->flightData;
 
-        DB::table('booked-flights')->where('id', $id)->delete();
+        $booking->delete();
 
         $message = <<<EOT
         Dear {$user->name},

@@ -11,4 +11,9 @@ class bookflight extends Model
 
     protected $table = 'booked-flights';
     protected $guarded = [];
+
+    public function flightData()
+    {
+        return $this->belongsTo(flightdata::class, 'flight_id', 'id');
+    }
 }

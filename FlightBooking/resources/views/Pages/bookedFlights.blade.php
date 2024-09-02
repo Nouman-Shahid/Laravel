@@ -25,16 +25,16 @@
 
         <p class="px-7 text-[5vh] font-semibold my-5 underline">Booked Flights</p>
 
-        @foreach ($data as $item => $booking)
+        @foreach ($data as $booking)
             <div class="flex w-[75%] h-[45vh] border border-gray-400 m-5 p-3 justify-between ">
                 <div class="flex  w-[30%]">
-                    <img src={{ $booking->image }} class='w-full'>
+                    <img src="{{ $booking->flightData->image }}" class='w-full'>
                 </div>
                 <div class="flex flex-col 400 w-[80%] justify-between">
                     <div class="flex flex-col h-[5vh] px-3">
                         <p>
-                            <span class="font-bold text-gray-700">{{ $booking->origin }}</span> -
-                            <span class="font-bold text-gray-700">{{ $booking->destination }}</span>
+                            <span class="font-bold text-gray-700">{{ $booking->flightData->origin }}</span> -
+                            <span class="font-bold text-gray-700">{{ $booking->flightData->destination }}</span>
                         </p>
                         <p class="font-bold text-gray-600 text-[2vh]">
                             Flight: Economy
