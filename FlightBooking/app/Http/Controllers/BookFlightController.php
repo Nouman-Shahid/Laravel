@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\bookflight;
 use App\Models\flightdata;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Stripe\Stripe;
 use Stripe\Checkout\Session as StripeSession;
@@ -14,6 +13,8 @@ use App\Mail\signupmail;
 
 class BookFlightController extends Controller
 {
+
+    //Checkout 
     public function checkout(string $flightId)
     {
         $flight = flightdata::where('id', $flightId)->first();
@@ -43,6 +44,9 @@ class BookFlightController extends Controller
 
         return redirect()->away($session->url);
     }
+
+
+    //Payment Success 
 
     public function success($flightid)
     {
@@ -74,11 +78,14 @@ class BookFlightController extends Controller
         return view('pages.success', ['data' => $flight]);
     }
 
+    //Payment Cancellation 
     public function cancel()
     {
 
         return view('pages.cancel');
     }
+
+    //Booked Flights 
     public function cart()
     {
         $user = Auth::user();
@@ -90,6 +97,7 @@ class BookFlightController extends Controller
         return view('pages.bookedFlights', ['data' => $results]);
     }
 
+    //Booked Flight Cancellation
     public function cancelFlight($flightid)
     {
         $user = Auth::user();

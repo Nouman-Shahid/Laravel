@@ -83,9 +83,6 @@ class AdminController extends Controller
         return redirect()->route("admin.flights")->with('success', $message);
     }
 
-
-
-
     //User Data Read
     public function showUsers()
     {
