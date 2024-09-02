@@ -111,7 +111,6 @@ class BookFlightController extends Controller
         Best regards,
         The AirPlan Team
         EOT;
-
         $subject = 'Booking Cancellation: Your flight has been cancelled';
 
         Mail::to($user->email)->send(new SignupMail($message, $subject));
