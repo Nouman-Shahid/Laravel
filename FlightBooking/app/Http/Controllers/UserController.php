@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\mailsender;
 use App\Mail\signupmail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use Stripe\Stripe;
-use Stripe\Checkout\Session as StripeSession;
+
 
 class UserController extends BaseController
 {

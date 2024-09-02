@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\bookflight;
+use App\Models\flightdata;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -15,7 +16,7 @@ class BookFlightController extends Controller
 {
     public function checkout(string $flightId)
     {
-        $flight = DB::table('flight-data')->where('id', $flightId)->first();
+        $flight = flightdata::where('id', $flightId)->first();
 
         $flight->amount = $flight->amount * 100;
         Stripe::setApiKey(config('stripe.sk'));
@@ -45,10 +46,10 @@ class BookFlightController extends Controller
 
     public function success($flightid)
     {
-        $flight = DB::table('flight-data')->where('id', $flightid)->first();
+        $flight = flightdata::where('id', $flightid)->first();
         $user = Auth::user();
 
-        DB::table('booked-flights')->insert([
+        bookflight::create([
             'user_id' => $user->id,
             'user_email' => $user->email,
             'flight_id' => $flightid,

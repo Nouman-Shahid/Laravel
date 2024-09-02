@@ -2,28 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\flightdata;
 
 class FlightDataController extends Controller
 {
     public function showFlights()
     {
-        $data = DB::table('flight-data')->get();
+        $data = flightdata::all();
 
         return view('pages.userdashboard', ['data' => $data]);
     }
 
     public function showHomeFlights()
     {
-        $result = DB::table('flight-data')->paginate(6);
+        $result = flightdata::paginate(6);
 
         return view('pages.welcome', ['data' => $result]);
     }
 
     public function showSingleFlights(string $id)
     {
-        $data = DB::table('flight-data')->where('id', $id)->first();
+        $data = flightdata::where('id', $id)->first();
 
         return view('pages.flightdescription', ['data' => $data]);
     }
