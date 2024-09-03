@@ -26,7 +26,7 @@ class FlightDataController extends Controller
     //Show single flight data
     public function showSingleFlights(string $id)
     {
-        $data = flightdata::where('id', $id)->first();
+        $data = flightdata::ShowSingleFlight($id);
 
         return view('pages.flightdescription', ['data' => $data]);
     }

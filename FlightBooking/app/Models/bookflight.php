@@ -16,4 +16,9 @@ class bookflight extends Model
     {
         return $this->belongsTo(flightdata::class, 'flight_id', 'id');
     }
+
+    public function scopeBookFlightDelete($query, $id)
+    {
+        return $query->where("id", $id)->delete();
+    }
 }

@@ -17,7 +17,7 @@ class BookFlightController extends Controller
     //Checkout 
     public function checkout(string $flightId)
     {
-        $flight = flightdata::where('id', $flightId)->first();
+        $flight = flightdata::ShowSingleFlight($flightId);
 
         $flight->amount = $flight->amount * 100;
         Stripe::setApiKey(config('stripe.sk'));
@@ -50,7 +50,7 @@ class BookFlightController extends Controller
 
     public function success($flightid)
     {
-        $flight = flightdata::where('id', $flightid)->first();
+        $flight = flightdata::ShowSingleFlight($flightid);
         $user = Auth::user();
 
         bookflight::create([

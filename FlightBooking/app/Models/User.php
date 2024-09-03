@@ -22,6 +22,20 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+
+    //User Data Delete
+    public function scopeUserDelete($query, $id)
+    {
+        return $query->where('id', $id)->delete();
+    }
+
+
+    //User Role
+    public function scopeRole($query)
+    {
+        return $query->where('role', 'user');
+    }
     protected $hidden = [
         'password',
         'remember_token',

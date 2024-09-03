@@ -12,8 +12,9 @@ class AdminController extends Controller
 {
     public function showDashboard()
     {
-        // Fetch data
-        $userCount = User::where('role', 'user')->count();
+        // Fetch data 
+        // where function Role() is a scope defined in admin model
+        $userCount = User::Role()->count();
         $flightCount = flightdata::count();
         $bookedFlightCount = bookflight::count();
 
@@ -51,7 +52,7 @@ class AdminController extends Controller
     //Flight Data Delete
     public function deleteData(string $id)
     {
-        flightdata::where('id', $id)->delete();
+        flightdata::FlightDelete($id);
 
         $message = "Flight data with id: {$id} deleted successfully";
         return redirect()->route("admin.flights")->with('success', $message);
@@ -60,7 +61,8 @@ class AdminController extends Controller
     //User Data Read
     public function showUsers()
     {
-        $data = User::where('role', 'user')->paginate(9);
+        // where function Role() is a scope defined in admin model
+        $data = User::Role()->paginate(9);
 
         return view('admin.adminuser', ['data' => $data]);
     }
@@ -68,7 +70,7 @@ class AdminController extends Controller
     // Delete User Data
     public function deleteUserData(string $id)
     {
-        User::where('id', $id)->delete();
+        User::UserDelete($id);
 
         $message = "User with id: {$id} removed successfully";
         return redirect()->route("admin.userdata")->with('success', $message);
@@ -84,7 +86,7 @@ class AdminController extends Controller
     // Delete Booked Flights
     public function deleteBookedFlights($id)
     {
-        $data = bookflight::where("id", $id)->delete();
+        bookflight::BookFlightDelete($id);
 
         $message = "Booked Flight with id: {$id} cancelled successfully";
         return redirect()->route("admin.bookedFlights")->with('success', $message);

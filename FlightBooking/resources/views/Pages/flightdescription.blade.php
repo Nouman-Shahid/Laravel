@@ -22,10 +22,10 @@
 
 
 @section('content')
-    <div class="bg-gray-100  pt-8 w-screen h-screen ">
+    <div class="bg-gray-100  p-10 mb-28 w-screen h-screen ">
         <p class="text-[4vh] font-semibold text-gray-700 my-10 ml-10 underline">Flight Details</p>
         <div class="mx-auto px-4 sm:px-6 lg:px-8  ">
-            <div class="flex flex-col md:flex-row -mx-4  ">
+            <div class="flex flex-col md:flex-row m-6 bg-white p-5  ">
                 <div class="md:flex-1 px-4">
                     <div class="h-[460px] rounded-lg bg-gray-300  mb-4">
                         <img class="w-full h-full object-cover" src={{ $data->image }} alt="Product Image">
