@@ -22,7 +22,7 @@
 
 
 @section('content')
-    <div class="flex flex-col w-screen bg-slate-100 h-auto justify-start items-center">
+    <div class="flex flex-col w-screen h-auto justify-start items-center">
 
 
 
@@ -75,15 +75,15 @@
 
 
 
-        <p class="text-[4vh] mt-14 w-screen flex justify-start py-3 px-10 ">Our latest flight deals</p>
+        <p class="text-[4.5vh] mt-14 w-screen font-semibold flex justify-start py-3 px-20 ">Our latest flight deals</p>
 
 
         {{-- Flight Deals --}}
-        <div class="flex items-center justify-between h-auto w-[80%] flex-wrap gap-8  mt-8 py-16">
+        <div class="flex items-center justify-between h-auto w-[80%] flex-wrap gap-8  my-4 py-8">
 
             @foreach ($data as $item => $flights)
                 <div
-                    class="relative bg-white shadow-lg rounded-lg h-[70vh] w-[50vh] cursor-pointer  overflow-hidden group transform transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-2xl">
+                    class="relative bg-gradient-to-t from-gray-100 to-white shadow-lg rounded-lg h-[70vh] w-[50vh] cursor-pointer  overflow-hidden group transform transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-2xl">
                     <div class="relative">
                         <img src="{{ $flights->image }}" alt="Flight Image"
                             class="w-full h-64 object-cover rounded-t-lg group-hover:opacity-80 transition-opacity duration-300">
@@ -93,7 +93,7 @@
                         </div>
                     </div>
 
-                    <div class="p-6 bg-gradient-to-t from-gray-50 to-white">
+                    <div class="p-6">
                         <h2
                             class="text-2xl font-bold text-gray-800 mb-3 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-blue-600">
                             {{ $flights->origin }} to {{ $flights->destination }}
@@ -124,6 +124,41 @@
 
                 </div>
             @endforeach
+
+            <hr class="w-full h-[0.1vh] mx-auto my-4 bg-gray-400 border-0 rounded ">
+
+
+            <div class="flex flex-col space-y-3 bg-gradient-to-t from-gray-50 to-white p-5">
+                <h2 class="font-bold text-gray-700 text-[3vh]">Why AirPlan?</h2>
+                <p>It is no longer an uphill battle to get the lowest airfare and book tickets online. AirPlan is all
+                    about making travel
+                    easy, affordable and simple. From international flights to domestic flights; from early morning flights
+                    to late night flights,
+                    from cheap flights to luxurious ones. AirPlan helps you complete your flight booking in just a few
+                    clicks. Your online
+                    flight booking experience is seamless with our features.</p>
+
+            </div>
+            <div class="flex flex-col  space-y-3 bg-gradient-to-t from-gray-50 to-white p-5">
+                <h2 class="font-bold text-gray-700 text-[3vh]">What are the benefits of booking flights online with
+                    AirPlan?</h2>
+                <p>Get the best flight fares with exciting flight offers on your air ticket when you
+                    book
+                    with AirPlan. Unmissable sales and deals like Travel Max Sale, Big Travel Sale,
+                    AirPlan Tatkaal, etc. offer never-seen-before discounts that help you book flights
+                    at affordable rates. Best flight discounts await you when you book with
+                    bank cards like ICICI, Bank of Baroda, HDFC, Axis, Kotak etc.</p>
+            </div>
+            <div class="flex flex-col  space-y-3 bg-gradient-to-t from-gray-50 to-white p-5">
+                <h2 class="font-bold text-gray-700 text-[3vh]">What’s more?</h2>
+                <p>Flight ticket booking or planning your travel is made simpler with our round trip and multicity options.
+                    When you hit enter, your search list page shows the results for both onward and return in a split screen
+                    format letting you choose flights in one go for a round trip. The multicity search page shows a list of
+                    complete itineraries that removes the hassle of you calculating time, transfers and layovers letting you
+                    finish your online flight booking. To ensure you get the best price we highlight offers, sales and other
+                    promotions on the checkout page. Post booking, our portal allows for easy cancellations or amendments
+                    without having to make calls to the airlines.</p>
+            </div>
 
         </div>
 

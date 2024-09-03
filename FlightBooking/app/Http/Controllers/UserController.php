@@ -55,6 +55,13 @@ class UserController extends BaseController
         ]);
 
         if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            //For admin
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.admindashboard');
+            }
+
+            // Redirect to user dashboard if user is a regular user
             return redirect()->route('user.flights');
         }
 

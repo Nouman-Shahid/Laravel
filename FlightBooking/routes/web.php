@@ -17,10 +17,6 @@ Route::get('/usersignup', function () {
     return view('auth.signup');
 })->name('view.signup');
 
-// Admin Authentication Routes
-Route::get('/adminsignin', function () {
-    return view('auth.adminsignin');
-})->name('admin.signin');
 
 
 //Admin : Page Add Flight
@@ -82,8 +78,6 @@ Route::controller(BookFlightController::class)->group(function () {
 // Admin Controller Methods
 
 Route::controller(AdminController::class)->group(function () {
-    // Define a POST route for admin sign-in
-    Route::post('/adminsignin', 'adminsignin')->name('admin.signin');
 
     // Dashboard Route
     Route::get('/admindashboard', 'showDashboard')->name('admin.admindashboard');

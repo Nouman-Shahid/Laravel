@@ -114,7 +114,44 @@
                     </div>
                 </div>
             @endforeach
+            <hr class="w-full h-[0.1vh] mx-auto my-4 bg-gray-400 border-0 rounded ">
+
+
+            <div class="flex flex-col space-y-3 bg-gradient-to-t from-gray-50 to-white p-5">
+                <h2 class="font-bold text-gray-700 text-[3vh]">Why AirPlan?</h2>
+                <p>It is no longer an uphill battle to get the lowest airfare and book tickets online. AirPlan is all
+                    about making travel
+                    easy, affordable and simple. From international flights to domestic flights; from early morning flights
+                    to late night flights,
+                    from cheap flights to luxurious ones. AirPlan helps you complete your flight booking in just a few
+                    clicks. Your online
+                    flight booking experience is seamless with our features.</p>
+
+            </div>
+            <div class="flex flex-col  space-y-3 bg-gradient-to-t from-gray-50 to-white p-5">
+                <h2 class="font-bold text-gray-700 text-[3vh]">What are the benefits of booking flights online with
+                    AirPlan?</h2>
+                <p>Get the best flight fares with exciting flight offers on your air ticket when you
+                    book
+                    with AirPlan. Unmissable sales and deals like Travel Max Sale, Big Travel Sale,
+                    AirPlan Tatkaal, etc. offer never-seen-before discounts that help you book flights
+                    at affordable rates. Best flight discounts await you when you book with
+                    bank cards like ICICI, Bank of Baroda, HDFC, Axis, Kotak etc.</p>
+            </div>
+            <div class="flex flex-col  space-y-3 bg-gradient-to-t from-gray-50 to-white p-5">
+                <h2 class="font-bold text-gray-700 text-[3vh]">What’s more?</h2>
+                <p>Flight ticket booking or planning your travel is made simpler with our round trip and multicity options.
+                    When you hit enter, your search list page shows the results for both onward and return in a split screen
+                    format letting you choose flights in one go for a round trip. The multicity search page shows a list of
+                    complete itineraries that removes the hassle of you calculating time, transfers and layovers letting you
+                    finish your online flight booking. To ensure you get the best price we highlight offers, sales and other
+                    promotions on the checkout page. Post booking, our portal allows for easy cancellations or amendments
+                    without having to make calls to the airlines.</p>
+            </div>
+
         </div>
+
+    </div>
 
 
 
