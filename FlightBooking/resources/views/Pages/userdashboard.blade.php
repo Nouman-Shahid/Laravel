@@ -21,6 +21,7 @@
 @endsection
 
 @section('content')
+
     <div class="flex flex-col w-screen bg-slate-100 h-auto justify-start items-center">
 
         <div class="relative inline-block">
