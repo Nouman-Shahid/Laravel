@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\Admin;
 use App\Models\bookflight;
+use App\Http\Middleware\ValidUser;
+use Illuminate\Pagination\Paginator;
 use App\Observers\BookFlightObserver;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
