@@ -2,7 +2,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 
 import React from "react";
-import Table from "./Table";
+import Table from "../../Components/Table";
 
 const Users = ({ data, user }) => {
     return (
