@@ -10,31 +10,31 @@ const Table = ({ data }) => {
                                     <tr>
                                         <th
                                             scope="col"
-                                            className="px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase"
+                                            className="px-6 py-3 text-center text-xs font-medium text-gray-800 uppercase"
                                         >
                                             Id
                                         </th>
                                         <th
                                             scope="col"
-                                            className="px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase"
+                                            className="px-6 py-3 text-center text-xs font-medium text-gray-800 uppercase"
                                         >
                                             Name
                                         </th>
                                         <th
                                             scope="col"
-                                            className="px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase"
+                                            className="px-6 py-3 text-center text-xs font-medium text-gray-800 uppercase"
                                         >
                                             Email
                                         </th>
                                         <th
                                             scope="col"
-                                            className="px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase"
+                                            className="px-6 py-3 text-center text-xs font-medium text-gray-800 uppercase"
                                         >
                                             View
                                         </th>
                                         <th
                                             scope="col"
-                                            className="px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase"
+                                            className="px-6 py-3 text-center text-xs font-medium text-gray-800 uppercase"
                                         >
                                             Delete
                                         </th>
@@ -44,15 +44,15 @@ const Table = ({ data }) => {
                                     {data.map((users) => (
                                         <tr
                                             key={users.id}
-                                            className="hover:bg-gray-800 cursor-pointer"
+                                            className="hover:bg-gray-200 cursor-pointer"
                                         >
-                                            <td className="px-6 py-4 text-center text-sm font-medium text-gray-200">
+                                            <td className="px-6 py-4 text-center text-sm font-medium text-gray-800">
                                                 {users.id}
                                             </td>
-                                            <td className="px-6 py-4 text-center text-sm text-gray-200">
+                                            <td className="px-6 py-4 text-center text-sm text-gray-800">
                                                 {users.name}
                                             </td>
-                                            <td className="px-6 py-4 text-center text-sm text-gray-200">
+                                            <td className="px-6 py-4 text-center text-sm text-gray-800">
                                                 {users.email}
                                             </td>
                                             <td className="px-6 py-4 text-center text-sm font-medium">

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [HotelController::class, 'getHotels']);
+Route::get('/home', [HotelController::class, 'getHotels'])->middleware(['auth', 'verified'])->name("home");
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
