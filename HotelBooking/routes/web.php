@@ -7,7 +7,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/home', [HotelController::class, 'getHotels']);
+Route::get('/', [HotelController::class, 'getHotels']);
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
