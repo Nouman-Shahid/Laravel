@@ -15,4 +15,14 @@ class HotelController extends Controller
         $hotelDeals = HotelDeals::all();
         return Inertia::render('Welcome', ['hotelData' => $hotelData, 'hotelDeals' => $hotelDeals]);
     }
+    public function getSingleHotels($id)
+    {
+        $hotelDeals = HotelDeals::find($id);
+
+        if (!$hotelDeals) {
+            return abort(404, 'Hotel deal not found.');
+        }
+
+        return Inertia::render('ProductDescription', ['product' => $hotelDeals]);
+    }
 }

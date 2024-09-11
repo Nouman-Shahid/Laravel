@@ -96,7 +96,10 @@ export default function Welcome({ auth, hotelData, hotelDeals }) {
 
                 <div className="flex space-x-10 justify-center items-center">
                     {hotelDeals.map((items) => (
-                        <div className="flex flex-col hover:scale-105 cursor-pointer transition border border-gray-300 h-[35vh] w-[15.5vw] rounded-2xl p-1 bg-[##F4F4F4]">
+                        <a
+                            href={`/room/id/${items.id}`}
+                            className="flex flex-col hover:scale-105 cursor-pointer transition border border-gray-300 h-[35vh] w-[15.5vw] rounded-2xl p-1 bg-[##F4F4F4]"
+                        >
                             <img
                                 src={items.image}
                                 className="h-[60%] w-full rounded-2xl"
@@ -112,7 +115,7 @@ export default function Welcome({ auth, hotelData, hotelDeals }) {
                                     from {items.price}/night
                                 </p>
                             </div>
-                        </div>
+                        </a>
                     ))}
                 </div>
             </div>
