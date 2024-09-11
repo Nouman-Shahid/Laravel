@@ -24,7 +24,7 @@ const NavBar = ({ auth }) => {
     };
 
     return (
-        <header className="flex items-center justify-between py-3 px-8 text-black border border-gray-500">
+        <header className="flex items-center justify-between py-3 px-8 text-black border border-gray-300">
             <div className="flex items-center justify-between w-auto">
                 <ApplicationLogo />
                 <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
