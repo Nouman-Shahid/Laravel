@@ -45,7 +45,7 @@ const ProductCard = ({ image, price, title }) => {
                             Non-refundable, Breakfast included
                         </p>
                         <a
-                            href=""
+                            href={route("checkout")}
                             className="px-4 py-3 bg-blue-600 text-white rounded-3xl"
                         >
                             Book now for ${price}

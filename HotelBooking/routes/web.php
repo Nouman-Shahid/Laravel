@@ -2,23 +2,14 @@
 
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\UserController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [HotelController::class, 'getHotels'])->name('home');
 
 Route::get('/room/id/{id}', [HotelController::class, 'getSingleHotels'])->middleware(['auth', 'verified']);
-
-// Route::get('/', function () {
-//     return Inertia::render('Welcome', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register'),
-//         'laravelVersion' => Application::VERSION,
-//         'phpVersion' => PHP_VERSION,
-//     ]);
-// });
 
 
 Route::get('/dashboard', function () {
@@ -41,6 +32,10 @@ Route::post('/addusers', [UserController::class, 'store'])->name('adduser');
 Route::get('/users/delete/{id}', [UserController::class, 'destroy']);
 
 
+//Payment Gateway
+Route::get('/checkout', [StripeController::class, 'checkout'])->name('checkout');
+Route::get('/checkout/success', [StripeController::class, 'success'])->name('success');
+Route::get('/checkout/cancel', [StripeController::class, 'cancel'])->name('cancel');
 
 
 Route::view('/page', 'AddUser');
