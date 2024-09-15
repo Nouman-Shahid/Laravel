@@ -162,11 +162,13 @@ const ProductDescription = ({ product, auth }) => {
                         </p>
 
                         <ProductCard
+                            productId={product.id}
                             image={product.image}
                             price={product.price}
                             title={`Double Fancy Room`}
                         />
                         <ProductCard
+                            productId={product.id}
                             image={product.roomImage1}
                             price={product.price}
                             title={`Double Standard Room`}

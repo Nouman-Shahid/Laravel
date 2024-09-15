@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProductCard = ({ image, price, title }) => {
+const ProductCard = ({ image, price, title, productId }) => {
     let subicons = [
         {
             name: "18 sqm",
@@ -45,7 +45,7 @@ const ProductCard = ({ image, price, title }) => {
                             Non-refundable, Breakfast included
                         </p>
                         <a
-                            href={route("checkout")}
+                            href={`/checkout/${productId}`}
                             className="px-4 py-3 bg-blue-600 text-white rounded-3xl"
                         >
                             Book now for ${price}
