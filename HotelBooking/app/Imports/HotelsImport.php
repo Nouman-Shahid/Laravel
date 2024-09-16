@@ -2,13 +2,12 @@
 
 namespace App\Imports;
 
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Log;
-
 use App\Models\HotelDeals;
 use Maatwebsite\Excel\Concerns\ToModel;
-use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
+use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 
 class HotelsImport implements ToModel, WithHeadingRow
 {
@@ -16,18 +15,24 @@ class HotelsImport implements ToModel, WithHeadingRow
     {
         Log::info('Processing row: ', $row);
 
+        Log::info('Hotel name: ' . ($row['hotelname'] ?? 'NULL'));
+        Log::info('Price: ' . ($row['price'] ?? 'NULL'));
+        Log::info('Location: ' . ($row['location'] ?? 'NULL'));
+        Log::info('Image: ' . ($row['image'] ?? 'NULL'));
+        Log::info('Created at: ' . ($row['created_at'] ?? 'NULL'));
+
+        if (empty($row['hotelname']) || empty($row['price']) || empty($row['location']) || empty($row['image'])) {
+            Log::warning('Missing required fields in row: ', $row);
+            return null;
+        }
+
         $createdAt = isset($row['created_at']) ? $this->convertExcelDate($row['created_at']) : null;
 
         return new HotelDeals([
-            'id' => $row['id'],
-            'hotelname' => $row['hotelname'] ?? null,
-            'price' => $row['price'] ?? null,
-            'location' => $row['location'] ?? null,
-            'image' => $row['image'] ?? null,
-            'hotelImage' => $row['hotelImage'] ?? null,
-            'receptionImage' => $row['receptionImage'] ?? null,
-            'roomImage1' => $row['roomImage1'] ?? null,
-            'roomImage2' => $row['roomImage2'] ?? null,
+            'hotelname' => $row['hotelname'],
+            'price' => $row['price'],
+            'location' => $row['location'],
+            'image' => $row['image'],
             'created_at' => $createdAt,
         ]);
     }

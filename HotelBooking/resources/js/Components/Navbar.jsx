@@ -35,16 +35,16 @@ const NavBar = ({ auth }) => {
                         Home
                     </NavLink>
                     <NavLink
-                        href={route("dashboard")}
-                        active={route().current("dashboard")}
+                        href={route("about")}
+                        active={route().current("about")}
                     >
-                        Dashboard
+                        About
                     </NavLink>
                     <NavLink
-                        href={route("loadusers")}
-                        active={route().current("loadusers")}
+                        href={route("help")}
+                        active={route().current("help")}
                     >
-                        User Management
+                        Help
                     </NavLink>
                 </div>
             </div>

@@ -10,12 +10,15 @@ use Inertia\Inertia;
 
 Route::get('/', [HotelController::class, 'getHotels'])->name('home');
 
-Route::get('/room/id/{id}', [HotelController::class, 'getSingleHotels'])->middleware(['auth', 'verified']);
+Route::get('/room/id/{id}', [HotelController::class, 'getSingleHotels']);
 
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/about-us', function () {
+    return Inertia::render('About');
+})->name('about');
+Route::get('/help', function () {
+    return Inertia::render('Help');
+})->name('help');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -23,22 +26,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//Display Users Info
-Route::get('/users', [UserController::class, 'loadUsers'])->name('loadusers');
-Route::post('/addusers', [UserController::class, 'store'])->name('adduser');
-
 
 
 // For deleting a user
 Route::get('/users/delete/{id}', [UserController::class, 'destroy']);
 
 
-Route::get('/checkout/{id}', [StripeController::class, 'checkout'])->name('checkout');
-Route::get('/checkout/success/{id}', [StripeController::class, 'success'])->name('success');
+Route::get('/checkout/{id}', [StripeController::class, 'checkout'])->middleware(['auth', 'verified'])->name('checkout');
+Route::get('/checkout/success/{id}', [StripeController::class, 'success'])->middleware(['auth', 'verified'])->name('success');
 
 
 
-Route::view('/page', 'AddUser');
 
 Route::post('/search', [HotelController::class, 'search'])->name('search');
 

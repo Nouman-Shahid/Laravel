@@ -59,7 +59,7 @@ const ProductDescription = ({ product, auth }) => {
                         <div className="flex h-[50v] w-[25%] flex-col space-y-4">
                             <div className="flex w-full rounded-2xl">
                                 <img
-                                    src={product.hotelImage}
+                                    src={product.hotel_Image}
                                     className="rounded-2xl w-full   h-[25.5vh]"
                                 />
                             </div>

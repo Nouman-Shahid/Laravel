@@ -10,15 +10,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    // Existing method to load users
-    public function loadUsers()
-    {
-        $userData = User::all();
-        $usersAuth = Auth::user();
-        return Inertia::render('Users/Users', ['user' => $usersAuth, 'data' => $userData]);
-    }
-
-    // Method to add a new user
     public function store(Request $request)
     {
         $request->validate([
@@ -32,16 +23,11 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ]);
-
-        return redirect()->route('loadusers');
     }
 
-    // Method to delete a user
     public function destroy($id)
     {
         $user = User::findOrFail($id);
         $user->delete();
-
-        return redirect()->route('loadusers');
     }
 }

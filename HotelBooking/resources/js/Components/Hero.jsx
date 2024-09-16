@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "@inertiajs/inertia-react";
+import { useForm } from "@inertiajs/react";
 
 const Hero = () => {
     const { data, setData, post } = useForm({
@@ -16,7 +16,7 @@ const Hero = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post("/search"); // Adjust the route to your actual endpoint
+        post("/search");
     };
 
     return (
@@ -24,7 +24,7 @@ const Hero = () => {
             <div className="relative inline-block">
                 <img
                     src="https://rnb.scene7.com/is/image/roomandboard/category_living_subcat01?size=2400,2400&scl=1"
-                    className="w-full h-auto opacity-90 object-cover"
+                    className="w-full h-[86vh] opacity-90 object-cover"
                     alt="Room and Board"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center p-6">
