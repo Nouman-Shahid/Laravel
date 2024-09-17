@@ -5,11 +5,12 @@ namespace App\Imports;
 use App\Models\HotelDeals;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 
-class HotelsImport implements ToModel, WithHeadingRow
+class HotelsImport implements ToModel, WithHeadingRow, WithChunkReading
 {
     public function model(array $row)
     {
@@ -46,5 +47,10 @@ class HotelsImport implements ToModel, WithHeadingRow
             Log::error('Date conversion error: ' . $e->getMessage());
             return null;
         }
+    }
+
+    public function chunkSize(): int
+    {
+        return 100; // Number of rows to process per chunk
     }
 }

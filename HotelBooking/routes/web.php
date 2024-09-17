@@ -42,10 +42,13 @@ Route::post('/search', [HotelController::class, 'search'])->name('search');
 
 
 Route::get('/import', function () {
-    return view('import');
+    return view('admin.adminimport');
 })->name('import.form');
 
 Route::post('/import', [AdminController::class, 'import'])->name('import');
 
+Route::get('/admindashboard', function () {
+    return view('admin.admindashboard');
+});
 
 require __DIR__ . '/auth.php';

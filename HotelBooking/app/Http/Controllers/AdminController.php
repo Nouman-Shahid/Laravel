@@ -22,7 +22,9 @@ class AdminController extends Controller
         Log::info('Received file: ' . $file->getClientOriginalName());
 
         try {
+            // Import the file with chunk reading
             Excel::import(new HotelsImport, $file);
+
             Log::info('File imported successfully');
             return Redirect::route('import.form')->with('message', 'File imported successfully!');
         } catch (\Exception $e) {
