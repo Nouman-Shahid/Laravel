@@ -51,6 +51,6 @@ class HotelsImport implements ToModel, WithHeadingRow, WithChunkReading
 
     public function chunkSize(): int
     {
-        return 100; // Number of rows to process per chunk
+        return 25; // Number of rows to process per chunk
     }
 }
