@@ -19,7 +19,6 @@ class AdminController extends Controller implements ShouldQueue
         ]);
 
         $file = $request->file('file');
-
         Log::info('Received file: ' . $file->getClientOriginalName());
 
         try {
