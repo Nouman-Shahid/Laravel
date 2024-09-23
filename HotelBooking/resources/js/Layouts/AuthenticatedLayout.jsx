@@ -1,9 +1,8 @@
-import NavBar from "@/Components/NavBar"; // Import the new NavBar component
+import NavBar from "@/Components/NavBar";
 
 export default function Authenticated({ user, header, children }) {
     return (
         <div className="min-h-screen overflow-x-hidden ">
-            {/* Use the new NavBar component */}
             <NavBar auth={{ user }} />
 
             {header && (

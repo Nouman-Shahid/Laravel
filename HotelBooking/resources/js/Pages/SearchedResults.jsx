@@ -16,9 +16,9 @@ const SearchedResults = ({ results, count, auth }) => {
             >
                 <Head title="Searched Results" />
                 <div className="p-6 max-w-7xl mx-auto mb-10">
-                    <h1 className="text-2xl font-bold mb-4">
+                    <p className="text-md font-bold mb-4 text-gray-500 ">
                         Total Results: {count}
-                    </h1>
+                    </p>
                     <div className="grid grid-cols-1 gap-6">
                         {results.map((result) => (
                             <div

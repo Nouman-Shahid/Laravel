@@ -13,7 +13,7 @@ export default function Help({ auth }) {
                     </h2>
                 }
             >
-                <Head title="Dashboard" />
+                <Head title="Help" />
 
                 <div className="py-12 bg-gray-50">
                     <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
