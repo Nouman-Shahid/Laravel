@@ -95,26 +95,31 @@ export default function Welcome({ auth, hotelData, hotelDeals }) {
                 </p>
 
                 <div className="flex space-x-10 justify-center items-center">
-                    {hotelDeals.map((items) => (
+                    {hotelDeals.map((item) => (
                         <a
-                            href={`/room/id/${items.id}`}
-                            className="flex flex-col hover:scale-105 cursor-pointer transition border border-gray-300 h-[35vh] w-[15.5vw] rounded-2xl p-1 bg-[##F4F4F4]"
+                            key={item.id}
+                            href={`/room/id/${item.id}`}
+                            className="flex flex-col hover:scale-105 cursor-pointer transition border border-gray-300 h-[35vh] w-[15.5vw] rounded-2xl p-1 bg-[#F4F4F4] relative"
                         >
                             <img
-                                src={items.image}
+                                src={item.image}
                                 className="h-[60%] w-full rounded-2xl"
+                                alt={item.hotelname}
                             />
                             <div className="flex flex-col p-2 space-y-1">
                                 <p className="font-poppins font-semibold text-gray-700">
-                                    {items.hotelname}
+                                    {item.hotelname}
                                 </p>
                                 <p className="font-poppins text-gray-500">
-                                    {items.location}
+                                    {item.location}
                                 </p>
-                                <p className="font-poppins font-semibold ">
-                                    from {items.price}/night
+                                <p className="font-poppins font-semibold">
+                                    from {item.price}/night
                                 </p>
                             </div>
+                            <button className="absolute right-2 bottom-2 bg-blue-500 text-white rounded-full py-2 px-3 hover:bg-blue-600 transition">
+                                ➔
+                            </button>
                         </a>
                     ))}
                 </div>

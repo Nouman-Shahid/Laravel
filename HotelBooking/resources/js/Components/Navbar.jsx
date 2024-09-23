@@ -5,7 +5,7 @@ import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 
 const NavBar = ({ auth }) => {
-    const { props } = usePage(); // Retrieve the page props, including the CSRF token
+    const { props } = usePage();
 
     const handleLogout = (e) => {
         e.preventDefault();
@@ -13,12 +13,12 @@ const NavBar = ({ auth }) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-CSRF-TOKEN": props.csrfToken, // CSRF token for security
+                "X-CSRF-TOKEN": props.csrfToken,
             },
             credentials: "same-origin",
         }).then((response) => {
             if (response.ok) {
-                window.location.href = "/"; // Redirect to home or login page after logout
+                window.location.href = "/";
             }
         });
     };
