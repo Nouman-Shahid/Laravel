@@ -22,14 +22,14 @@ class AdminController extends Controller implements ShouldQueue
         Log::info('Received file: ' . $file->getClientOriginalName());
 
         try {
-            // Import the file with chunk reading
-            Excel::import(new HotelsImport, $file);
+            // Dispatch the job
+            ImportHotelsJob::dispatch($file);
 
-            Log::info('File imported successfully');
-            return Redirect::route('import.form')->with('message', 'File imported successfully!');
+            Log::info('Import job dispatched successfully');
+            return Redirect::route('import.form')->with('message', 'Import job started!');
         } catch (\Exception $e) {
-            Log::error('File import error: ' . $e->getMessage());
-            return Redirect::route('import.form')->with('message', 'Error importing file: ' . $e->getMessage());
+            Log::error('Job dispatch error: ' . $e->getMessage());
+            return Redirect::route('import.form')->with('message', 'Error dispatching job: ' . $e->getMessage());
         }
     }
 }

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="images/favicon/logo.png" type="image/x-icon">
-    <title>Airplan - @yield('title')</title>
+    <title>InnVite - @yield('title')</title>
 </head>
 
 <body class="w-screen min-h-screen h-auto flex flex-col justify-between items-center bg-slate-100 overflow-x-hidden">

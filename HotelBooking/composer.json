@@ -10,7 +10,8 @@
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "maatwebsite/excel": "3.1.58",
+        "maatwebsite/excel": "^3.1",
+        "predis/predis": "^2.2",
         "stripe/stripe-php": "^15.9",
         "tightenco/ziggy": "^2.0",
         "vladimir-yuldashev/laravel-queue-rabbitmq": "^14.1"
@@ -19,7 +20,7 @@
         "fakerphp/faker": "^1.23",
         "laravel/breeze": "^2.1",
         "laravel/pint": "^1.13",
-        "laravel/sail": "^1.26",
+        "laravel/sail": "^1.32",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.0",
         "pestphp/pest": "^2.0",
