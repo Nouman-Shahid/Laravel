@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\LazyCollection;
-use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
