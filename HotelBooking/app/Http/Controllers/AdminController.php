@@ -17,10 +17,10 @@ class AdminController extends Controller
             'file' => 'required|mimes:xlsx'
         ]);
 
-        // Store the uploaded file temporarily
+        // Storing file in temporarily location
         $path = $request->file('file')->store('uploads');
 
-        // Load the XLSX file
+        // Loading the XLSX file from temporary location
         $spreadsheet = IOFactory::load(storage_path('app/' . $path));
         $sheet = $spreadsheet->getActiveSheet();
 
@@ -42,11 +42,11 @@ class AdminController extends Controller
                 ];
             })->toArray();
 
-            Offers::insert($records); // Bulk insert
+            Offers::insert($records); // Bulk records are inserted
         });
 
-        // Optional: Delete the file after processing
-        Storage::delete($path);
+        //Deleting the file after processing
+        // Storage::delete($path);
 
         return redirect()->back()->with('message', 'Import successful')->with('message_type', 'success');
     }
