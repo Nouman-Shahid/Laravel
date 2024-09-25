@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Offers;
 use Illuminate\Http\Request;
-use PhpOffice\PhpSpreadsheet\IOFactory;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\LazyCollection;
+use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class AdminController extends Controller
 {
@@ -45,8 +47,68 @@ class AdminController extends Controller
         });
 
         //Deleting the file after processing
-        // Storage::delete($path);
+        Storage::delete($path);
 
         return redirect()->back()->with('message', 'Import successful')->with('message_type', 'success');
+    }
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('home');
+    }
+
+
+
+    public function showDashboard()
+    {
+        // Fetch data 
+        // where function Role() is a scope defined in admin model
+        $userCount = User::where('role', 'user')->count();
+        $hotelCount = Offers::count();
+        $bookedhotelCount = User::count();
+
+        return view('admin.admindashboard', [
+            'userCount' => $userCount,
+            'hotelCount' => $hotelCount,
+            'bookedhotelCount' => $bookedhotelCount,
+        ]);
+    }
+
+
+
+
+    //User Data Read
+    public function showUsers()
+    {
+        $data = User::where('role', 'user')->paginate(9);
+
+        return view('admin.adminuser', ['data' => $data]);
+    }
+
+    // Delete User Data
+    public function deleteUserData(string $id)
+    {
+        User::where('id', $id)->delete();
+
+        $message = "User with id: {$id} removed successfully";
+        return redirect()->route("admin.userdata")->with('success', $message);
+    }
+
+    //Hotel Data Read
+    public function showHotelData()
+    {
+        $data = Offers::paginate(3);
+
+        return view('admin.adminhoteldata', ['data' => $data]);
+    }
+
+    // Delete Hotel Data
+    public function deleteHotelData(string $id)
+    {
+        Offers::where('id', $id)->delete();
+
+        $message = "User with id: {$id} removed successfully";
+        return redirect()->route("admin.hoteldata")->with('success', $message);
     }
 }

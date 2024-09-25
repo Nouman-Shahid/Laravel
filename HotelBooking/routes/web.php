@@ -3,8 +3,8 @@
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StripeController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -28,9 +28,6 @@ Route::middleware('auth')->group(function () {
 
 
 
-// For deleting a user
-Route::get('/users/delete/{id}', [UserController::class, 'destroy']);
-
 
 Route::get('/checkout/{id}', [StripeController::class, 'checkout'])->middleware(['auth', 'verified'])->name('checkout');
 Route::get('/checkout/success/{id}', [StripeController::class, 'success'])->middleware(['auth', 'verified'])->name('success');
@@ -41,14 +38,39 @@ Route::get('/checkout/success/{id}', [StripeController::class, 'success'])->midd
 Route::post('/search', [HotelController::class, 'search'])->name('search');
 
 
-Route::get('/import', function () {
-    return view('admin.adminimport');
-})->name('import.form');
+Route::middleware(AdminMiddleware::class)->group(
+    function () {
 
-Route::post('/import', [AdminController::class, 'import'])->name('import');
+        Route::controller(AdminController::class)->group(
+            function () {
 
-Route::get('/admindashboard', function () {
-    return view('admin.admindashboard');
-});
+                Route::get('/admindashboard/import', function () {
+                    return view('admin.adminimport');
+                })->name('import.form');
+
+                Route::post('/import', 'import')->name('import');
+
+                Route::get('/admindashboard', 'showDashboard')->name('admindashboard');
+
+                Route::get('logout', 'logout')
+                    ->name('logout');
+
+
+                //Admin User data fetching
+                Route::get('/admindashboard/userdata', 'showUsers')->name('admin.userdata');
+
+                //Admin: Delete user    
+                Route::get('/admindashboard/flightdata/deleteuser/{id}', 'deleteUserData')->name('deleteuser');
+
+                //Admin Hotel data fetching
+                Route::get('/admindashboard/hoteldata', 'showHotelData')->name('admin.hoteldata');
+
+                //Admin: Hotel user    
+                Route::get('/admindashboard/hoteldata/deletehotel/{id}', 'deleteHotelData')->name('deletehoteldata');
+            }
+        );
+    }
+);
+
 
 require __DIR__ . '/auth.php';

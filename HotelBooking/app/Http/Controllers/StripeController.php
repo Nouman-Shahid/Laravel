@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Controller;
-use App\Models\HotelDeals;
-use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Inertia\Inertia;
+use Inertia\Controller;
+use App\Models\HotelDeals;
+use App\Models\BookedHotels;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class StripeController extends Controller
@@ -50,6 +52,13 @@ class StripeController extends Controller
     public function success($productId)
     {
         $product = HotelDeals::find($productId);
+        $user = Auth::user();
+
+        // Create a new booked hotel record
+        $bookedhotel = BookedHotels::create([
+            'user_id' => $user->id,
+            'hotel_id' => $productId,
+        ]);
 
         return Inertia::render('PaymentSuccess', ['product' => $product]);
     }
