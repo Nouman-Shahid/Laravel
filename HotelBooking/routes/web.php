@@ -4,6 +4,7 @@ use App\Http\Controllers\HotelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BookedHotelsController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -20,10 +21,13 @@ Route::get('/help', function () {
     return Inertia::render('Help');
 })->name('help');
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/cart', [BookedHotelsController::class, 'cart'])->name('cart');
 });
 
 
@@ -43,6 +47,7 @@ Route::middleware(AdminMiddleware::class)->group(
 
         Route::controller(AdminController::class)->group(
             function () {
+
 
                 Route::get('/admindashboard/import', function () {
                     return view('admin.adminimport');
@@ -65,8 +70,15 @@ Route::middleware(AdminMiddleware::class)->group(
                 //Admin Hotel data fetching
                 Route::get('/admindashboard/hoteldata', 'showHotelData')->name('admin.hoteldata');
 
-                //Admin: Hotel user    
+                //Admin: Delete Hotel    
                 Route::get('/admindashboard/hoteldata/deletehotel/{id}', 'deleteHotelData')->name('deletehoteldata');
+
+
+                //Admin Booked Hotel data fetching
+                Route::get('/admindashboard/bookedhotelsdata', 'showBookedHotelData')->name('admin.bookedhoteldata');
+
+                //Admin: Delete BookedHotel    
+                Route::get('/admindashboard/bookedhotelsdata/deletehotel/{id}', 'deleteBookedHotelData')->name('deletebookedHotels');
             }
         );
     }

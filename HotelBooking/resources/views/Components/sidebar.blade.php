@@ -14,7 +14,8 @@
                     <img src="https://img.icons8.com/?size=64&id=42824&format=png" class="size-[3vh]">
                     <li>Hotels Deals</li>
                 </a>
-                <a class="flex hover:bg-blue-800 items-center h-[5vh] space-x-4">
+                <a href="{{ route('admin.bookedhoteldata') }}"
+                    class="flex hover:bg-blue-800 items-center h-[5vh] space-x-4">
                     <img src="https://img.icons8.com/?size=64&id=46906&format=png" class="size-[3vh]">
                     <li>Booked Hotels</li>
                 </a>
@@ -22,11 +23,11 @@
                     <img src="https://img.icons8.com/?size=48&id=K7ebDTcbruY8&format=png" class="size-[3vh]">
                     <li>Users Data</li>
                 </a>
-                <a href="{{ route('import') }}"class="flex hover:bg-blue-800 items-center h-[5vh] space-x-4">
+                <a href="{{ route('import.form') }}"class="flex hover:bg-blue-800 items-center h-[5vh] space-x-4">
                     <img src="https://img.icons8.com/?size=80&id=SgATUH6y3S3X&format=png" class="size-[3vh]">
                     <li>Import Data</li>
                 </a>
-                <a href=""class="flex hover:bg-blue-800 items-center h-[5vh] space-x-4">
+                <a href="{{ route('profile.edit') }}" class="flex hover:bg-blue-800 items-center h-[5vh] space-x-4">
                     <img src="https://img.icons8.com/?size=64&id=42850&format=png" class="size-[3vh]">
                     <li>Settings</li>
                 </a>

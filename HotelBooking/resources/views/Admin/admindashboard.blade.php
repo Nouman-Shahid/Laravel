@@ -43,7 +43,7 @@
                             labels: [label, 'Others'],
                             datasets: [{
                                 label: label,
-                                data: [data, 10 - data],
+                                data: [data, 100 - data],
                                 backgroundColor: backgroundColors,
                                 borderColor: backgroundColors.map(color => color.replace('0.2',
                                     '1')),

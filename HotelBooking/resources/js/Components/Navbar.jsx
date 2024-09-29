@@ -49,7 +49,13 @@ const NavBar = ({ auth }) => {
                 </div>
             </div>
 
-            <nav className="flex items-center space-x-2">
+            <nav className="flex items-center space-x-5">
+                <NavLink href={route("cart")} active={route().current("cart")}>
+                    <img
+                        src="https://img.icons8.com/?size=48&id=12849&format=png"
+                        className="size-10"
+                    />
+                </NavLink>
                 {auth.user ? (
                     <div className="relative">
                         <Dropdown>

@@ -14,4 +14,9 @@ class HotelDeals extends Model
     protected $guarded = [];
 
     public $timestamps = true;
+
+    public function bookings()
+    {
+        return $this->hasMany(BookedHotels::class, 'hotel_id');
+    }
 }

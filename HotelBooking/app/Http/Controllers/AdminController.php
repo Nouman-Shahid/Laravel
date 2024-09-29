@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BookedHotels;
 use App\Models\User;
 use App\Models\Offers;
 use Illuminate\Http\Request;
@@ -66,7 +67,7 @@ class AdminController extends Controller
         // where function Role() is a scope defined in admin model
         $userCount = User::where('role', 'user')->count();
         $hotelCount = Offers::count();
-        $bookedhotelCount = User::count();
+        $bookedhotelCount = BookedHotels::count();
 
         return view('admin.admindashboard', [
             'userCount' => $userCount,
@@ -109,6 +110,23 @@ class AdminController extends Controller
         Offers::where('id', $id)->delete();
 
         $message = "User with id: {$id} removed successfully";
-        return redirect()->route("admin.hoteldata")->with('success', $message);
+        return redirect()->route("admin.bookedhoteldata")->with('success', $message);
+    }
+
+
+    public function showBookedHotelData()
+    {
+        $data = BookedHotels::paginate(9);
+
+        return view('admin.adminbookedHotels', ['data' => $data]);
+    }
+
+    // Delete Hotel Data
+    public function deleteBookedHotelData(string $id)
+    {
+        BookedHotels::where('id', $id)->delete();
+
+        $message = "Booking with id: {$id} removed successfully";
+        return redirect()->route("adminbookedHotels")->with('success', $message);
     }
 }
