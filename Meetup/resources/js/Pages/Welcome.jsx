@@ -1,4 +1,5 @@
 import Navbar from "@/Components/Navbar";
+import NavLink from "@/Components/NavLink";
 import { Head } from "@inertiajs/react";
 
 export default function Welcome({ auth }) {
@@ -36,38 +37,19 @@ export default function Welcome({ auth }) {
                                 community.
                             </p>
 
-                            <form
-                                action="#"
-                                class="max-w-xl mx-auto mt-8 bg-white lg:mx-0 sm:bg-transparent lg:mt-12 rounded-xl"
-                            >
-                                <div class="p-4 sm:p-2 sm:bg-white sm:border-2 sm:border-transparent sm:rounded-full sm:focus-within:border-orange-500 sm:focus-within:ring-1 sm:focus-within:ring-orange-500">
-                                    <div class="flex flex-col items-start sm:flex-row">
-                                        <div class="flex-1 w-full min-w-0">
-                                            <div class="relative text-gray-400 focus-within:text-gray-600">
-                                                <label
-                                                    for="email"
-                                                    class="sr-only"
-                                                ></label>
-                                                <input
-                                                    type="email"
-                                                    name="email"
-                                                    id="email"
-                                                    placeholder="Enter email to get latest updates"
-                                                    class="block w-full px-4 py-4 text-base text-center text-black placeholder-gray-500 transition-all duration-200 border-transparent rounded-full sm:text-left focus:border-transparent focus:ring-0 caret-orange-500"
-                                                    required=""
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <button
-                                            type="submit"
-                                            class="inline-flex items-center justify-center w-full px-10 py-4 mt-4 font-semibold text-white transition-all duration-200 bg-orange-500 border border-transparent rounded-full sm:w-auto sm:ml-4 sm:mt-0 hover:bg-orange-600 focus:bg-orange-600"
-                                        >
-                                            Submit
-                                        </button>
-                                    </div>
+                            <div class="border border-red-300 flex justify-between items-center p-6 bg-red-50 mt-5 rounded-2xl">
+                                <h2 class="text-xl flex items-center font-semibold text-gray-600">
+                                    Connect effortlessly with friends and family
+                                </h2>
+                                <div class="px-8 py-4 transition-all duration-200 bg-orange-500 rounded-full hover:bg-orange-600 focus:bg-orange-600">
+                                    <NavLink href={route("dashboard")}>
+                                        <p className="text-white">
+                                            Get Started
+                                        </p>
+                                    </NavLink>
                                 </div>
-                            </form>
+                            </div>
+
                             <p class="mt-5 text-base text-black">
                                 Ready to Chat? Sign up today and start your
                                 journey with us!
