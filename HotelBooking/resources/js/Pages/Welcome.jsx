@@ -99,7 +99,7 @@ export default function Welcome({ auth, hotelData, hotelDeals }) {
                         <a
                             key={item.id}
                             href={`/room/id/${item.id}`}
-                            className="flex flex-col hover:scale-105 cursor-pointer transition border border-gray-300 h-[35vh] w-[15.5vw] rounded-2xl p-1 bg-[#F4F4F4] relative"
+                            className="flex flex-col hover:scale-105 cursor-pointer transition border border-gray-300 h-[40vh] w-[18vw] rounded-2xl p-1 bg-[#F4F4F4] relative"
                         >
                             <img
                                 src={item.image}
@@ -117,7 +117,7 @@ export default function Welcome({ auth, hotelData, hotelDeals }) {
                                     from {item.price}/night
                                 </p>
                             </div>
-                            <button className="absolute right-2 bottom-2 bg-blue-500 text-white rounded-full py-2 px-3 hover:bg-blue-600 transition">
+                            <button className="absolute right-0 bottom-0 bg-blue-500 text-white  py-0 px-2 hover:bg-blue-600 transition">
                                 ➔
                             </button>
                         </a>

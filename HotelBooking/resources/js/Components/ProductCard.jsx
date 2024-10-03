@@ -17,7 +17,7 @@ const ProductCard = ({ image, price, title, productId }) => {
     ];
     return (
         <>
-            <div className="flex bg-white border border-gray-200 mt-10 h-[40vh] p-2  rounded-2xl ">
+            <div className="flex bg-white border border-gray-200 mt-10 h-[50vh] p-2  rounded-2xl ">
                 <img src={image} alt="" className="w-[30%] rounded-l-2xl" />
                 <div className="flex flex-col bg-white w-[70%] rounded-r-2xl p-5">
                     <p className="font-poppins font-bold text-gray-600">

@@ -81,7 +81,7 @@
         <div class="flex items-center justify-between h-auto w-[80%] flex-wrap gap-8 mt-8 py-16">
             @foreach ($data as $flights)
                 <div
-                    class="relative bg-white shadow-lg rounded-lg h-[70vh] w-[50vh] cursor-pointer overflow-hidden group transform transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-2xl">
+                    class="relative bg-white shadow-lg rounded-lg h-auto w-[50vh] cursor-pointer overflow-hidden group transform transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-2xl">
                     <div class="relative">
                         <img src="{{ $flights->image }}" alt="Flight Image"
                             class="w-full h-64 object-cover rounded-t-lg group-hover:opacity-80 transition-opacity duration-300">
@@ -107,7 +107,7 @@
                             {{ \Carbon\Carbon::parse($flights->arrival)->format('M d, Y') }}
                         </p>
                     </div>
-                    <div class="absolute bottom-0 left-0 right-0 p-4">
+                    <div class=" p-4">
                         <a href="{{ route('user.Singleflights', ['id' => $flights->id]) }}"
                             class="block bg-blue-600 text-white text-center py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
                             View Details
