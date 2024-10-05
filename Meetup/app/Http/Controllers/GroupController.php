@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Group;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -19,16 +20,19 @@ class GroupController extends Controller
         ]);
 
         $userId = Auth::id();
+        $randomString = Str::random(10);
 
         $path = null;
         if ($request->hasFile('groupimage')) {
             $path = $request->file('groupimage')->store('group_images', 'public');
         }
 
+
         Group::create([
             'name' => $request->name,
             'groupimage' => $path,
             'created_by' => $userId,
+            'code' => $randomString,
             'created_at' => now(),
         ]);
 
@@ -46,12 +50,15 @@ class GroupController extends Controller
 
         return Inertia::render('ChatRoom', ['data' => $data]);
     }
-    public function showSingleGroupData($id)
+    public function showSingleGroupData($code)
     {
         $userId = Auth::id();
 
-        $data = Group::where('id', $id)->get();
+        // Retrieve all messages created by the user
+        $messages = Group::where('created_by', $userId)->get(); // Assuming this is a collection of messages
+        // Retrieve a specific group by code
+        $group = Group::where('code', $code)->first();
 
-        return Inertia::render('ChatRoom', ['messages' => $data]);
+        return Inertia::render('SingleChat', ['messages' => $messages, 'data' => $group]);
     }
 }
