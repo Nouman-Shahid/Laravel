@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Group;
+use App\Models\Message;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -54,11 +55,23 @@ class GroupController extends Controller
     {
         $userId = Auth::id();
 
-        // Retrieve all messages created by the user
-        $messages = Group::where('created_by', $userId)->get(); // Assuming this is a collection of messages
-        // Retrieve a specific group by code
-        $group = Group::where('code', $code)->first();
+        $groupdata = Group::where('code', $code)->first();
+        $data = Group::where('created_by', $userId)->get();
+        $count = Message::distinct('user_id')->count('created_by');
+        $totalusers = Message::distinct('user_id')->get();
 
-        return Inertia::render('SingleChat', ['messages' => $messages, 'data' => $group]);
+        // Fetch all messages in the group
+        $messages = Message::where('group_code', $code)
+            ->orderBy('created_at', 'asc')
+            ->get();
+
+        return Inertia::render('SingleChat', [
+            'groupdata' => $groupdata,
+            'grouplist' => $data,
+            'messages' => $messages,
+            'userId' => $userId, // Pass the userId for conditional styling
+            'count' => $count,
+            'totalusers' => $totalusers
+        ]);
     }
 }

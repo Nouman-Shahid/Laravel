@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\GroupController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -31,7 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/group', [GroupController::class, 'storeGroupData'])->name('groups.store');
-    Route::get('/group/{id}', [GroupController::class, 'showSingleGroupData'])->name('groups.show');
+    Route::get('/groups/{id}', [GroupController::class, 'showSingleGroupData'])->name('groups.show');
+    Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
 });
 
 require __DIR__ . '/auth.php';

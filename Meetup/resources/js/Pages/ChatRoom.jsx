@@ -2,7 +2,7 @@ import React from "react";
 import { Head } from "@inertiajs/react";
 import Sidebar from "@/Components/Sidebar";
 import NoData from "@/Components/NoData";
-import Messages from "./Profile/Messages";
+import Messages from "./Messages";
 
 const ChatRoom = ({ messages, data }) => {
     return (
@@ -19,7 +19,7 @@ const ChatRoom = ({ messages, data }) => {
                                 className="your-class-name"
                             >
                                 <img
-                                    src="images/icons/icon-add.png"
+                                    src="https://img.icons8.com/?size=48&id=102544&format=png"
                                     className="h-8"
                                     alt="Add group"
                                 />
@@ -29,10 +29,9 @@ const ChatRoom = ({ messages, data }) => {
                     data={data}
                 />
                 <Head title="Chats" />
-                <div className="flex w-full justify-start items-start">
+                <div className="flex w-full justify-center items-center">
                     <div className="flex flex-col">
-                        <Messages messages={messages} />
-                        {/* {messages ? <>message</> : <NoData />} */}
+                        <NoData />
                     </div>
                 </div>
             </div>

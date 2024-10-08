@@ -1,5 +1,6 @@
 import React from "react";
 import Aside from "./Aside";
+import NavLink from "./NavLink";
 
 const Sidebar = ({ header, data }) => {
     console.log("Sidebar data:", data); // Log the data to check its type
@@ -33,12 +34,12 @@ const Sidebar = ({ header, data }) => {
                         </button>
                     </form>
 
-                    <div className="mt-8 space-y-4">
+                    <div className="mt-8 spac   e-y-4">
                         {Array.isArray(data) ? (
                             data.map((item) => (
-                                <a
+                                <NavLink
+                                    href={`/groups/${item.code}`}
                                     key={item.code} // Add a key prop for each item
-                                    href={`/group/${item.code}`}
                                     className="flex items-center w-full px-5 py-2 transition-colors duration-200 dark:hover:bg-gray-800 gap-x-2 hover:bg-gray-100 focus:outline-none"
                                 >
                                     <img
@@ -53,7 +54,7 @@ const Sidebar = ({ header, data }) => {
                                             {item.created_at}
                                         </p>
                                     </div>
-                                </a>
+                                </NavLink>
                             ))
                         ) : (
                             <p>No data available.</p> // Fallback message if data is not an array

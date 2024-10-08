@@ -2,39 +2,57 @@ import React from "react";
 import { Head } from "@inertiajs/react";
 import Sidebar from "@/Components/Sidebar";
 import NoData from "@/Components/NoData";
-import Messages from "./Profile/Messages";
+import Messages from "./Messages";
+import GroupDetails from "@/Components/GroupDetails";
 
-const SingleChat = ({ messages, data }) => {
+const SingleChat = ({
+    grouplist,
+    groupdata,
+    messages,
+    userId,
+    count,
+    totalusers,
+}) => {
     return (
-        <main className="overflow-x-hidden">
-            <div className="flex justify-between w-screen">
+        <main className="overflow-x-hidden h-screen">
+            <div className="flex justify-between w-screen h-screen ">
                 <Sidebar
                     header={
                         <>
-                            <h2 className="text-xl font-semibold text-white">
+                            <h2 className="text-xl font-semibold text-white user-select-none">
                                 Groups
                             </h2>
-                            <a
-                                href={route("groupform")}
-                                className="your-class-name"
-                            >
+                            <a href={route("groupform")}>
                                 <img
-                                    src="images/icons/icon-add.png"
+                                    src="https://img.icons8.com/?size=48&id=102544&format=png"
                                     className="h-8"
                                     alt="Add group"
                                 />
                             </a>
                         </>
                     }
-                    data={data}
+                    data={grouplist}
                 />
                 <Head title="Chats" />
-                <div className="flex w-full justify-start items-start">
-                    <div className="flex flex-col">
-                        <NoData messages={messages} />
-                        {/* {messages ? <>message</> : <NoData />} */}
+                {groupdata ? (
+                    <div className="flex w-full justify-start items-center">
+                        <div className="flex flex-col">
+                            <Messages messages={messages} userId={userId} />
+                        </div>
                     </div>
-                </div>
+                ) : (
+                    <div className="flex w-full justify-center items-center">
+                        <div className="flex flex-col">
+                            <NoData />
+                        </div>
+                    </div>
+                )}
+
+                <GroupDetails
+                    groupdata={groupdata}
+                    count={count}
+                    totalusers={totalusers}
+                />
             </div>
         </main>
     );
