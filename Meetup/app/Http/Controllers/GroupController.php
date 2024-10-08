@@ -68,8 +68,8 @@ class GroupController extends Controller
         return Inertia::render('SingleChat', [
             'groupdata' => $groupdata,
             'grouplist' => $data,
-            'messages' => $messages,
-            'userId' => $userId, // Pass the userId for conditional styling
+            'initialMessages' => $messages, // Pass messages as initialMessages
+            'userId' => $userId,
             'count' => $count,
             'totalusers' => $totalusers
         ]);

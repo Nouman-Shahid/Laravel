@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Head } from "@inertiajs/react";
 import Sidebar from "@/Components/Sidebar";
 import NoData from "@/Components/NoData";
@@ -8,11 +8,13 @@ import GroupDetails from "@/Components/GroupDetails";
 const SingleChat = ({
     grouplist,
     groupdata,
-    messages,
+    initialMessages,
     userId,
     count,
     totalusers,
 }) => {
+    const [messages, setMessages] = useState(initialMessages || []); // Initialize state with initial messages
+
     return (
         <main className="overflow-x-hidden h-screen">
             <div className="flex justify-between w-screen h-screen ">
@@ -37,7 +39,11 @@ const SingleChat = ({
                 {groupdata ? (
                     <div className="flex w-full justify-start items-center">
                         <div className="flex flex-col">
-                            <Messages messages={messages} userId={userId} />
+                            <Messages
+                                messages={messages} // Use the messages state
+                                userId={userId}
+                                setMessages={setMessages} // Pass the state updater function
+                            />
                         </div>
                     </div>
                 ) : (

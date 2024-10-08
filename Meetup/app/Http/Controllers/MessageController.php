@@ -13,17 +13,19 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         $userId = Auth::id();
-        $user = Auth::user(); // Get the authenticated user
+        $user = Auth::user();
 
+        // Validate the incoming request
         $request->validate([
-            'message' => 'required|string',
+            'message' => 'required|string|max:255',
         ]);
 
+        // Create the message
         Message::create([
             'message' => $request->message,
-            'group_code' => 'Zx9YvT1Nvl',
+            'group_code' => 'Zx9YvT1Nvl', // Adjust if necessary
             'user_id' => $userId,
-            'user_name' => $user->name, // Access the name attribute directly
+            'user_name' => $user->name,
         ]);
 
         return redirect()->back();

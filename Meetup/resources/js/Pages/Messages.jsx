@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "@inertiajs/react";
+import MessageItem from "@/Components/MessageItem";
+import NoData from "@/Components/NoData";
 
-const Messages = ({ messages, userId }) => {
-    const { data, setData, post } = useForm({
-        message: "",
-    });
+const Messages = ({ messages, userId, setMessages }) => {
+    const { data, setData, post, errors } = useForm({ message: "" });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -13,66 +13,50 @@ const Messages = ({ messages, userId }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post("/messages");
+        console.log("Form submitted with message:", data.message);
+        if (!data.message.trim()) return; // Prevent submitting empty messages
+
+        const newMessage = {
+            id: Date.now(), // Temporary ID
+            message: data.message,
+            user_id: userId,
+            user_name: "You",
+            created_at: new Date().toISOString(),
+        };
+
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
+
+        post("/messages", {
+            onSuccess: () => {
+                console.log("Message sent successfully");
+                setData({ message: "" }); // Clear input on success
+            },
+            onError: (error) => {
+                console.error("Error sending message:", error);
+                setMessages((prevMessages) =>
+                    prevMessages.filter((msg) => msg.id !== newMessage.id)
+                );
+            },
+        });
     };
 
     return (
         <>
             <div className="flex flex-col space-y-4 p-4 w-[55vw] h-[90vh] overflow-auto">
-                {messages && messages.length > 0 ? (
+                {messages ? (
                     messages.map((message) => (
-                        <div
-                            className={`flex item-start w-full  ${
-                                message.user_id === userId
-                                    ? "justify-end"
-                                    : "justify-start"
-                            }`}
-                        >
-                            <div
-                                className={`flex flex-col items-start p-2 rounded-xl   ${
-                                    message.user_id === userId
-                                        ? " bg-blue-500 text-white"
-                                        : " bg-gray-300 text-black"
-                                }`}
-                                key={message.id}
-                            >
-                                {/* Display user label only for non-authenticated users */}
-                                {message.user_id !== userId && (
-                                    <div className="flex-shrink-0 mr-2">
-                                        <p className="text-red-700 font-bold">
-                                            {message.user_name}
-                                        </p>
-                                    </div>
-                                )}
-                                <div className="flex flex-col">
-                                    <div className="max-w-[40vw]">
-                                        {message.message}
-                                    </div>
-                                    <span
-                                        className={`text-xs text-gray-500 flex justify-end mt-1  ${
-                                            message.user_id === userId
-                                                ? "text-white"
-                                                : "text-black"
-                                        }`}
-                                    >
-                                        {new Date(
-                                            message.created_at
-                                        ).toLocaleTimeString([], {
-                                            hour: "2-digit",
-                                            minute: "2-digit",
-                                        })}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+                        <MessageItem
+                            key={message.id}
+                            message={message}
+                            userId={userId}
+                        />
                     ))
                 ) : (
                     <div className="flex items-center justify-center h-full">
-                        No messages available.
+                        <NoData />
                     </div>
                 )}
             </div>
-
             <form onSubmit={handleSubmit} className="flex h-[10vh] w-[55vw]">
                 <input
                     type="text"
@@ -89,6 +73,10 @@ const Messages = ({ messages, userId }) => {
                     Submit
                 </button>
             </form>
+            {errors.message && (
+                <div className="text-red-600">{errors.message}</div>
+            )}{" "}
+            {/* Display validation errors */}
         </>
     );
 };
