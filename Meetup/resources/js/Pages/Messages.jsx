@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useForm } from "@inertiajs/react";
 import MessageItem from "@/Components/MessageItem";
 import NoData from "@/Components/NoData";
 
 const Messages = ({ messages, userId, setMessages }) => {
     const { data, setData, post, errors } = useForm({ message: "" });
+    const endOfMessagesRef = useRef(null); // Create a reference for the end of messages
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -40,10 +41,17 @@ const Messages = ({ messages, userId, setMessages }) => {
         });
     };
 
+    // Scroll to the bottom of the messages whenever messages change
+    useEffect(() => {
+        if (endOfMessagesRef.current) {
+            endOfMessagesRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [messages]);
+
     return (
         <>
-            <div className="flex flex-col space-y-4 p-4 w-[55vw] h-[90vh] overflow-auto">
-                {messages ? (
+            <div className="flex flex-col space-y-4 p-4 w-[55vw] h-[93vh] overflow-auto bg-[#080f25]">
+                {messages.length > 0 ? (
                     messages.map((message) => (
                         <MessageItem
                             key={message.id}
@@ -56,8 +64,10 @@ const Messages = ({ messages, userId, setMessages }) => {
                         <NoData />
                     </div>
                 )}
+                {/* This empty div will help us scroll to the bottom */}
+                <div ref={endOfMessagesRef} />
             </div>
-            <form onSubmit={handleSubmit} className="flex h-[10vh] w-[55vw]">
+            <form onSubmit={handleSubmit} className="flex h-[7vh] w-[55vw]">
                 <input
                     type="text"
                     name="message"
@@ -68,9 +78,9 @@ const Messages = ({ messages, userId, setMessages }) => {
                 />
                 <button
                     type="submit"
-                    className="px-4 py-1 bg-green-600 text-white"
+                    className="px-4 py-1 bg-green-500 text-white"
                 >
-                    Submit
+                    <img src="https://img.icons8.com/?size=24&id=3925&format=png" />
                 </button>
             </form>
             {errors.message && (

@@ -8,28 +8,22 @@ const messageItem = React.memo(({ message, userId }) => {
             }`}
         >
             <div
-                className={`flex flex-col items-start p-2 rounded-xl ${
+                className={`flex flex-col items-start p-2 rounded-xl border ${
                     message.user_id === userId
-                        ? "bg-blue-500 text-white"
-                        : "bg-gray-300 text-black"
+                        ? "bg-gray-700 text-white border-slate-600 "
+                        : "bg-slate-800 text-black border-slate-600"
                 }`}
             >
                 {message.user_id !== userId && (
                     <div className="flex-shrink-0 mr-2">
-                        <p className="text-red-700 font-bold">
+                        <p className="text-red-500  font-bold">
                             {message.user_name}
                         </p>
                     </div>
                 )}
-                <div className="flex flex-col">
+                <div className="flex flex-col text-gray-200">
                     <div className="max-w-[40vw]">{message.message}</div>
-                    <span
-                        className={`text-xs text-gray-500 flex justify-end mt-1 ${
-                            message.user_id === userId
-                                ? "text-white"
-                                : "text-black"
-                        }`}
-                    >
+                    <span className="text-xs flex justify-end mt-1">
                         {new Date(message.created_at).toLocaleTimeString([], {
                             hour: "2-digit",
                             minute: "2-digit",

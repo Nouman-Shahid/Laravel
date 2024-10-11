@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Group;
 use App\Models\Message;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -59,7 +60,6 @@ class GroupController extends Controller
         $data = Group::where('created_by', $userId)->get();
         $count = Message::distinct('user_id')->count('created_by');
         $totalusers = Message::distinct('user_id')->get();
-
         // Fetch all messages in the group
         $messages = Message::where('group_code', $code)
             ->orderBy('created_at', 'asc')
@@ -71,7 +71,25 @@ class GroupController extends Controller
             'initialMessages' => $messages, // Pass messages as initialMessages
             'userId' => $userId,
             'count' => $count,
-            'totalusers' => $totalusers
+            'totalusers' => $totalusers,
+        ]);
+    }
+
+
+    public function searchMember(Request $request)
+    {
+        $validated = $request->validate([
+            'member' => 'required|string',
+        ]);
+
+        $member = $validated['member'];
+
+        $results = User::where('name', 'like', "%{$member}%")->get();
+        $count = $results->count();
+
+        return Inertia::render('GroupDetails', [
+            'results' => $results,
+            'searchcount' => $count,
         ]);
     }
 }

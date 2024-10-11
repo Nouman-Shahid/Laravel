@@ -13,7 +13,7 @@ const SingleChat = ({
     count,
     totalusers,
 }) => {
-    const [messages, setMessages] = useState(initialMessages || []); // Initialize state with initial messages
+    const [messages, setMessages] = useState(initialMessages || []);
 
     return (
         <main className="overflow-x-hidden h-screen">

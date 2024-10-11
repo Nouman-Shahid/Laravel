@@ -4,7 +4,7 @@ import NavLink from "@/Components/NavLink";
 const Aside = () => {
     return (
         <>
-            <div class="flex flex-col justify-between items-center w-16 min-h-screen h-auto py-8 space-y-8 bg-white dark:bg-gray-900 dark:border-gray-700">
+            <div class="flex flex-col justify-between items-center w-16 min-h-screen h-auto py-8 space-y-8 border-r border-r-gray-600 bg-gray-800">
                 <div className="flex flex-col space-y-8 items-center">
                     <NavLink
                         href={route("home")}
