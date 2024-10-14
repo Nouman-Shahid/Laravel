@@ -4,8 +4,8 @@ import NavLink from "@/Components/NavLink";
 const Aside = () => {
     return (
         <>
-            <div class="flex flex-col justify-between items-center w-16 min-h-screen h-auto py-8 space-y-8 border-r border-r-gray-600 bg-gray-800">
-                <div className="flex flex-col space-y-8 items-center">
+            <div class="flex flex-col justify-between items-center w-16 min-h-screen h-auto py-8 space-y-8 border-r border-r-gray-600 bg-[#212121]">
+                <div className="flex flex-col space-y-10 items-center">
                     <NavLink
                         href={route("home")}
                         active={route().current("home")}
@@ -69,6 +69,35 @@ const Aside = () => {
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                                 d="M4.5 6h15a1.5 1.5 0 011.5 1.5v12a1.5 1.5 0 01-1.5 1.5h-15a1.5 1.5 0 01-1.5-1.5v-12A1.5 1.5 0 014.5 6zm0 0V3.75A1.5 1.5 0 016 2h12a1.5 1.5 0 011.5 1.5V6"
+                            />
+                        </svg>
+                    </NavLink>
+                    <NavLink
+                        href={route("searchUser")}
+                        active={route().current("searchUser")}
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth="1.5"
+                            stroke="currentColor"
+                            className="w-7 h-7"
+                        >
+                            <circle
+                                cx="10"
+                                cy="10"
+                                r="6"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                            <line
+                                x1="16.5"
+                                y1="16.5"
+                                x2="21"
+                                y2="21"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
                             />
                         </svg>
                     </NavLink>

@@ -76,20 +76,23 @@ class GroupController extends Controller
     }
 
 
-    public function searchMember(Request $request)
+    public function search(Request $request)
     {
         $validated = $request->validate([
-            'member' => 'required|string',
+            'member_name' => 'required|string',
         ]);
 
-        $member = $validated['member'];
-
-        $results = User::where('name', 'like', "%{$member}%")->get();
+        $user_name = $validated['member_name'];
+        $results = User::where('name', 'like', "%{$user_name}%")->get();
         $count = $results->count();
 
-        return Inertia::render('GroupDetails', [
+        return redirect()->route('dashboard')->with([
             'results' => $results,
             'searchcount' => $count,
         ]);
+    }
+    public function searchUser()
+    {
+        return Inertia::render('SearchUser');
     }
 }

@@ -34,7 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/group', [GroupController::class, 'storeGroupData'])->name('groups.store');
     Route::get('/groups/{id}', [GroupController::class, 'showSingleGroupData'])->name('groups.show');
     Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
-    Route::post('/search', [GroupController::class, 'searchMember'])->name('searchMember');
+    Route::post('/search', [GroupController::class, 'search'])->name('search');
+    Route::get('/search-user', [GroupController::class, 'searchUser'])->name('searchUser');
 });
 
 require __DIR__ . '/auth.php';

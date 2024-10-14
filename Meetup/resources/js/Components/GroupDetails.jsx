@@ -1,32 +1,14 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import React from "react";
+import NavLink from "./NavLink";
 
 const GroupDetails = ({
     groupdata = {},
     count = 0,
     totalusers = [],
-    results = [],
+    results,
 }) => {
-    const [isInputVisible, setInputVisible] = useState(false);
-    const { register, handleSubmit, reset } = useForm();
-
-    const handleAddMemberClick = () => setInputVisible(true);
-    const handleCrossClick = () => {
-        setInputVisible(false);
-        reset(); // Clear input on close
-    };
-
-    const onSubmit = (data) => {
-        console.log("Searching for member:", data.member);
-        // Replace this with your actual search logic
-        // e.g., fetching data based on the member name
-        // post("/search", { member: data.member });
-        setInputVisible(false); // Optionally hide the input after submission
-        reset(); // Clear the input after submission
-    };
-
     return (
-        <div className="flex flex-col w-full py-4 bg-gray-800 text-[#E0E0E0] shadow-lg p-5">
+        <div className="flex flex-col w-full py-4 bg-[#212121] text-[#E0E0E0] shadow-lg p-5">
             <div className="flex flex-col items-center justify-between py-5">
                 <img
                     src={groupdata.groupimage || ""}
@@ -38,41 +20,25 @@ const GroupDetails = ({
                 </h1>
                 <p className="font-semibold text-[#B0B0B0]">{count} Members</p>
 
-                {!isInputVisible ? (
-                    <button
-                        onClick={handleAddMemberClick}
-                        className="mt-2 bg-green-600 text-white py-1 px-4 rounded-md hover:bg-green-700 transition duration-200"
-                    >
-                        Add member
-                    </button>
-                ) : (
-                    <form
-                        onSubmit={handleSubmit(onSubmit)}
-                        className="flex items-center mt-2"
-                    >
-                        <input
-                            type="text"
-                            {...register("member", { required: true })} // Make it required if needed
-                            placeholder="Enter member name"
-                            className="border border-gray-400 rounded-md px-2 py-1 mr-2 text-black"
-                        />
-                        <button
-                            type="button"
-                            onClick={handleCrossClick}
-                            className="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center"
-                        >
-                            &times;
-                        </button>
-                    </form>
-                )}
+                <NavLink
+                    href={route("searchUser")}
+                    active={route().current("searchUser")}
+                    className="mt-2 bg-green-600 text-white py-1 px-4 rounded-md hover:bg-green-700 transition duration-200"
+                >
+                    Add member
+                </NavLink>
             </div>
 
             <div className="flex">
-                {results.map((item, index) => (
-                    <div key={index} className="flex">
-                        {item.name}
-                    </div>
-                ))}
+                {results ? (
+                    results.map((item, index) => (
+                        <div key={index} className="flex">
+                            {item.name} {/* Display the user name */}
+                        </div>
+                    ))
+                ) : (
+                    <p>No results found.</p>
+                )}
             </div>
 
             <div className="flex flex-col space-y-3 p-2">

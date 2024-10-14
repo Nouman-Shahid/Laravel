@@ -12,6 +12,8 @@ const SingleChat = ({
     userId,
     count,
     totalusers,
+    results,
+    searchcount,
 }) => {
     const [messages, setMessages] = useState(initialMessages || []);
 
@@ -58,6 +60,8 @@ const SingleChat = ({
                     groupdata={groupdata}
                     count={count}
                     totalusers={totalusers}
+                    results={results}
+                    searchcount={searchcount}
                 />
             </div>
         </main>

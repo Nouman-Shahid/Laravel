@@ -8,13 +8,12 @@ const Sidebar = ({ header, data }) => {
         setSelectedGroup(code); // Update selected group on click
     };
 
-    // Get the current pathname to check against
     const currentPath = window.location.pathname;
 
     return (
         <sidebar className="flex ">
             <Aside />
-            <div className="h-screen overflow-y-auto sm:w-64 w-60 bg-gray-800">
+            <div className="h-screen overflow-y-auto sm:w-64 w-60 bg-[#212121]">
                 {header && (
                     <header>
                         <div className="mx-auto max-w-7xl px-3 py-6 flex justify-between items-center">
@@ -37,11 +36,11 @@ const Sidebar = ({ header, data }) => {
                             <a
                                 href={`/groups/${item.code}`}
                                 key={item.code}
-                                className={`flex items-center .custom-inward-curve w-full px-5 py-2 transition-colors duration-200 gap-x-2 focus:outline-none ${
+                                className={`flex items-center .custom-inward-curve w-full px-5 py-3 border-b border-l border-t border-transparent transition-colors duration-200 gap-x-2 ${
                                     selectedGroup === item.code ||
                                     currentPath === `/groups/${item.code}`
-                                        ? "bg-[#31363F]"
-                                        : "hover:bg-[#31363F]"
+                                        ? "bg-[#1E272C] border-slate-700"
+                                        : "hover:bg-[#1E272C]  hover:border-slate-700"
                                 }`}
                                 onClick={() => handleGroupClick(item.code)}
                             >

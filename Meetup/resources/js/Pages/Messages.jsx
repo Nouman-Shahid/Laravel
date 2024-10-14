@@ -50,7 +50,7 @@ const Messages = ({ messages, userId, setMessages }) => {
 
     return (
         <>
-            <div className="flex flex-col space-y-4 p-4 w-[55vw] h-[93vh] overflow-auto bg-[#080f25]">
+            <div className="flex flex-col space-y-4 p-4 w-[55vw] h-[93vh] overflow-auto bg-[#1E272C]">
                 {messages.length > 0 ? (
                     messages.map((message) => (
                         <MessageItem
