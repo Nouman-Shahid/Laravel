@@ -86,7 +86,6 @@ const Messages = ({ messages, userId, setMessages }) => {
             {errors.message && (
                 <div className="text-red-600">{errors.message}</div>
             )}{" "}
-            {/* Display validation errors */}
         </>
     );
 };

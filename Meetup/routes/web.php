@@ -22,7 +22,7 @@ Route::get('/', function () {
 //     return Inertia::render('Dashboard');
 // });
 
-Route::get('/chat-room', [GroupInviteController::class, 'showInvite'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/notification', [GroupInviteController::class, 'showInvite'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::get('/groups', [GroupController::class, 'showGroupData'])->name('groups');
@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/search', [GroupController::class, 'search'])->name('search');
     Route::get('/search-user', [GroupController::class, 'searchUser'])->name('searchUser');
     Route::post('/invite/{userId}/{groupcode}', [GroupInviteController::class, 'invite'])->name('invite');
+    Route::get('/notification/{notificationId}', [GroupInviteController::class, 'showNotification']);
 });
 
 require __DIR__ . '/auth.php';

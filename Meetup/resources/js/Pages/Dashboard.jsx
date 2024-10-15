@@ -1,7 +1,7 @@
-import Aside from "@/Components/Aside";
-import Invite from "@/Components/Invite";
+import NoData from "@/Components/NoData";
 import Sidebar from "@/Components/Sidebar";
 import { Head } from "@inertiajs/react";
+import Invite from "./Invite";
 
 export default function Dashboard({ data }) {
     return (
@@ -19,7 +19,7 @@ export default function Dashboard({ data }) {
                 />
                 <Head title="Notifications" />
                 <div className="flex w-full justify-center items-center">
-                    <Invite />
+                    <NoData />
                 </div>
             </div>
         </main>

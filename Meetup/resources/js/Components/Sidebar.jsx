@@ -61,22 +61,26 @@ const Sidebar = ({ header, data, notifications }) => {
                           ))
                         : notifications.map((item) => (
                               <a
-                                  //   href={`/groups/${item.code}`}
-                                  key={item.code}
+                                  href={`/notification/${item.id}`}
+                                  key={item.id}
                                   className={`flex items-center .custom-inward-curve w-full px-5 py-3 border-b border-l border-t border-transparent transition-colors duration-200 gap-x-2 ${
-                                      selectedGroup === item.id ||
-                                      currentPath === `/groups/${item.id}`
+                                      selectedGroup === item.id
                                           ? "bg-[#1E272C] border-slate-700"
                                           : "hover:bg-[#1E272C]  hover:border-slate-700"
                                   }`}
                                   onClick={() => handleGroupClick(item.id)}
                               >
+                                  <img
+                                      className="object-cover w-8 h-8 rounded-full"
+                                      src={item.groupimage}
+                                  />
                                   <div className="text-left rtl:text-right">
-                                      <h1 className="text-sm font-medium text-gray-700 capitalize dark:text-white">
-                                          {item.group_code}
+                                      <h1 className="text-sm font-medium text-gray-700 dark:text-white">
+                                          {item.invited_by.toLowerCase()}
                                       </h1>
+
                                       <p className="text-xs text-gray-500 dark:text-gray-300">
-                                          {item.created_at}
+                                          has invited you to {item.groupname}
                                       </p>
                                   </div>
                               </a>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class GroupInvite extends Model
 {
     use HasFactory;
-    protected $table = 'group_innvitation';
+    protected $table = 'group_invitation';
 
     protected $guarded = [];
 

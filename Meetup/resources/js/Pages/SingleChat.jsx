@@ -12,8 +12,6 @@ const SingleChat = ({
     userId,
     count,
     totalusers,
-    results,
-    searchcount,
 }) => {
     const [messages, setMessages] = useState(initialMessages || []);
 
