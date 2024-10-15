@@ -51,10 +51,9 @@ class GroupInviteController extends Controller
     {
         $userId = Auth::id();
 
-        $notificationList
-            = GroupInvite::join('users', 'group_invitation.invited_user_id', '=', 'users.id')
+        $notificationList = GroupInvite::join('users', 'group_invitation.invited_user_id', '=', 'users.id')
             ->join('group', 'group_invitation.group_code', '=', 'group.code')
-            ->where('group_invitation.id', $id)
+            ->where('group_invitation.invited_user_id', $userId)
             ->select(
                 'group_invitation.*',
                 'users.name as username',
@@ -76,5 +75,16 @@ class GroupInviteController extends Controller
             )
             ->first();
         return Inertia::render('Invite', ['notificationsData' => $data, 'notificationList' => $notificationList]);
+    }
+
+
+    public function acceptInvite($id)
+    {
+
+        GroupInvite::where('id', $id)->update(
+            ['accepted' => true]
+        );
+
+        return redirect()->route('dashboard');
     }
 }

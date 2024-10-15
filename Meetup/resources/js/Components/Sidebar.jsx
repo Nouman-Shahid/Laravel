@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import Aside from "./Aside";
 
-const Sidebar = ({ header, data, notifications }) => {
+const Sidebar = ({
+    header,
+    groupsMadeByOtherUser,
+    groupsMadeByUser,
+    notifications,
+}) => {
     const [selectedGroup, setSelectedGroup] = useState(null); // Track selected group
 
     const handleGroupClick = (code) => {
@@ -31,8 +36,8 @@ const Sidebar = ({ header, data, notifications }) => {
                 </form>
 
                 <div className="mt-8 space-y-1">
-                    {Array.isArray(data)
-                        ? data.map((item) => (
+                    {Array.isArray(groupsMadeByUser)
+                        ? groupsMadeByUser.map((item) => (
                               <a
                                   href={`/groups/${item.code}`}
                                   key={item.code}
@@ -85,6 +90,34 @@ const Sidebar = ({ header, data, notifications }) => {
                                   </div>
                               </a>
                           ))}
+                    {Array.isArray(groupsMadeByOtherUser) &&
+                        groupsMadeByOtherUser.map((item) => (
+                            <a
+                                href={`/groups/${item.code}`}
+                                key={item.code}
+                                className={`flex items-center .custom-inward-curve w-full px-5 py-3 border-b border-l border-t border-transparent transition-colors duration-200 gap-x-2 ${
+                                    selectedGroup === item.code ||
+                                    currentPath === `/groups/${item.code}`
+                                        ? "bg-[#1E272C] border-slate-700"
+                                        : "hover:bg-[#1E272C]  hover:border-slate-700"
+                                }`}
+                                onClick={() => handleGroupClick(item.code)}
+                            >
+                                <img
+                                    className="object-cover w-8 h-8 rounded-full"
+                                    src={item.groupimage}
+                                    alt={item.name}
+                                />
+                                <div className="text-left rtl:text-right">
+                                    <h1 className="text-sm font-medium text-gray-700 capitalize dark:text-white">
+                                        {item.name}
+                                    </h1>
+                                    <p className="text-xs text-gray-500 dark:text-gray-300">
+                                        {item.created_at}
+                                    </p>
+                                </div>
+                            </a>
+                        ))}
                 </div>
             </div>
         </sidebar>

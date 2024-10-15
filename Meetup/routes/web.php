@@ -18,9 +18,6 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-// Route::get('/chat-room', function () {
-//     return Inertia::render('Dashboard');
-// });
 
 Route::get('/notification', [GroupInviteController::class, 'showInvite'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -38,11 +35,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/group', [GroupController::class, 'storeGroupData'])->name('groups.store');
     Route::get('/groups/{id}', [GroupController::class, 'showSingleGroupData'])->name('groups.show');
-    Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
+    Route::post('/messages/{id}', [MessageController::class, 'store'])->name('messages.store');
     Route::post('/search', [GroupController::class, 'search'])->name('search');
     Route::get('/search-user', [GroupController::class, 'searchUser'])->name('searchUser');
     Route::post('/invite/{userId}/{groupcode}', [GroupInviteController::class, 'invite'])->name('invite');
     Route::get('/notification/{notificationId}', [GroupInviteController::class, 'showNotification']);
+    Route::get('/invite-accept/{id}', [GroupInviteController::class, 'acceptInvite']);
 });
 
 require __DIR__ . '/auth.php';

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Group;
 use App\Models\Message;
-use App\Models\User;
+use App\Models\GroupInvite;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,16 +48,37 @@ class GroupController extends Controller
     {
         $userId = Auth::id();
 
-        $data = Group::where('created_by', $userId)->get();
+        $groupsMadeByUser = Group::where('created_by', $userId)->get();
 
-        return Inertia::render('ChatRoom', ['data' => $data]);
+        $groupsMadeByOtherUser = GroupInvite::join('group', 'group_invitation.group_code', '=', 'group.code')
+            ->where('group_invitation.accepted', true)
+            ->where('group_invitation.invited_user_id', $userId)
+            ->select(
+                'group_invitation.*',
+                'group.*'
+            )
+            ->get();
+
+        return Inertia::render('ChatRoom', [
+            'groupsMadeByUser' => $groupsMadeByUser,
+            'groupsMadeByOtherUser' => $groupsMadeByOtherUser
+        ]);
     }
     public function showSingleGroupData($code)
     {
         $userId = Auth::id();
 
+        $groupsMadeByUser = Group::where('created_by', $userId)->get();
+
+        $groupsMadeByOtherUser = GroupInvite::join('group', 'group_invitation.group_code', '=', 'group.code')
+            ->where('group_invitation.accepted', true)
+            ->where('group_invitation.invited_user_id', $userId)
+            ->select(
+                'group_invitation.*',
+                'group.*'
+            )
+            ->get();
         $groupdata = Group::where('code', $code)->first();
-        $data = Group::where('created_by', $userId)->get();
         $count = Message::distinct('user_id')->count('created_by');
         $totalusers = Message::distinct('user_id')->get();
         // Fetch all messages in the group
@@ -66,11 +88,12 @@ class GroupController extends Controller
 
         return Inertia::render('SingleChat', [
             'groupdata' => $groupdata,
-            'grouplist' => $data,
             'initialMessages' => $messages, // Pass messages as initialMessages
             'userId' => $userId,
             'count' => $count,
             'totalusers' => $totalusers,
+            'groupsMadeByUser' => $groupsMadeByUser,
+            'groupsMadeByOtherUser' => $groupsMadeByOtherUser
         ]);
     }
 
@@ -95,6 +118,6 @@ class GroupController extends Controller
     }
     public function searchUser()
     {
-        return Inertia::render('SearchUser', []);
+        return Inertia::render('SearchUser');
     }
 }

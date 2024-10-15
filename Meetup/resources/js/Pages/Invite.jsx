@@ -3,6 +3,7 @@ import ApplicationLogo from "../Components/ApplicationLogo";
 import { Head } from "@inertiajs/react";
 import Aside from "@/Components/Aside";
 import Sidebar from "@/Components/Sidebar";
+import NavLink from "@/Components/NavLink";
 
 const Invite = ({ notificationsData, notificationList }) => {
     return (
@@ -21,7 +22,7 @@ const Invite = ({ notificationsData, notificationList }) => {
 
                 <Head title="Notification" />
 
-                <section class=" w-full p-20 mx-auto bg-white dark:bg-gray-900 ">
+                <section class=" w-full p-20 mx-auto bg-[#1E272C] ">
                     <header>
                         <ApplicationLogo />
                     </header>
@@ -34,18 +35,21 @@ const Invite = ({ notificationsData, notificationList }) => {
                         <p class="mt-2 leading-loose text-gray-600 dark:text-gray-300">
                             <span className="text-blue-300">
                                 {notificationsData.invited_by}
-                            </span>{" "}
-                            has invited you to join the group
+                            </span>
+                            has invited you to join the group{" "}
                             <span class="font-semibold ">
-                                {" "}
                                 {notificationsData.groupname}
                             </span>
                             .
                         </p>
 
-                        <button class="px-6 py-2 mt-4 text-sm font-medium tracking-wider text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-                            Accept the invite
-                        </button>
+                        <NavLink
+                            href={`/invite-accept/${notificationsData.id}`}
+                        >
+                            <p className="py-1 px-4 text-white bg-green-600 w-fit mt-5 rounded-2xl">
+                                Accept the invite
+                            </p>
+                        </NavLink>
 
                         <p class="mt-8 text-gray-600 dark:text-gray-300">
                             Thanks, <br />

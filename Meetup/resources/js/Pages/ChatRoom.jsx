@@ -4,7 +4,7 @@ import Sidebar from "@/Components/Sidebar";
 import NoData from "@/Components/NoData";
 import Messages from "./Messages";
 
-const ChatRoom = ({ data }) => {
+const ChatRoom = ({ groupsMadeByUser, groupsMadeByOtherUser }) => {
     return (
         <main className="overflow-x-hidden">
             <div className="flex justify-between w-screen">
@@ -26,7 +26,8 @@ const ChatRoom = ({ data }) => {
                             </a>
                         </>
                     }
-                    data={data}
+                    groupsMadeByUser={groupsMadeByUser}
+                    groupsMadeByOtherUser={groupsMadeByOtherUser}
                 />
                 <Head title="Chats" />
                 <div className="flex w-full justify-center items-center">

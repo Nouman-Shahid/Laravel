@@ -6,7 +6,8 @@ import Messages from "./Messages";
 import GroupDetails from "@/Components/GroupDetails";
 
 const SingleChat = ({
-    grouplist,
+    groupsMadeByOtherUser,
+    groupsMadeByUser,
     groupdata,
     initialMessages,
     userId,
@@ -33,7 +34,8 @@ const SingleChat = ({
                             </a>
                         </>
                     }
-                    data={grouplist}
+                    groupsMadeByOtherUser={groupsMadeByOtherUser}
+                    groupsMadeByUser={groupsMadeByUser}
                 />
                 <Head title="Chats" />
                 {groupdata ? (
@@ -42,7 +44,8 @@ const SingleChat = ({
                             <Messages
                                 messages={messages} // Use the messages state
                                 userId={userId}
-                                setMessages={setMessages} // Pass the state updater function
+                                setMessages={setMessages}
+                                groupdata={groupdata} // Pass the state updater function
                             />
                         </div>
                     </div>

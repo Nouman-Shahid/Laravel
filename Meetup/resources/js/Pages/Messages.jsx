@@ -3,7 +3,7 @@ import { useForm } from "@inertiajs/react";
 import MessageItem from "@/Components/MessageItem";
 import NoData from "@/Components/NoData";
 
-const Messages = ({ messages, userId, setMessages }) => {
+const Messages = ({ messages, userId, setMessages, groupdata }) => {
     const { data, setData, post, errors } = useForm({ message: "" });
     const endOfMessagesRef = useRef(null); // Create a reference for the end of messages
 
@@ -27,7 +27,7 @@ const Messages = ({ messages, userId, setMessages }) => {
 
         setMessages((prevMessages) => [...prevMessages, newMessage]);
 
-        post("/messages", {
+        post(`/messages/${groupdata.code}`, {
             onSuccess: () => {
                 console.log("Message sent successfully");
                 setData({ message: "" }); // Clear input on success
