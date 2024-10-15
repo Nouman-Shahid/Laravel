@@ -4,7 +4,7 @@ import Sidebar from "@/Components/Sidebar";
 import NoData from "@/Components/NoData";
 import Messages from "./Messages";
 
-const ChatRoom = ({ messages, data }) => {
+const ChatRoom = ({ data }) => {
     return (
         <main className="overflow-x-hidden">
             <div className="flex justify-between w-screen">

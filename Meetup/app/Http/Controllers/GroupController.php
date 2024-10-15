@@ -85,14 +85,17 @@ class GroupController extends Controller
         $user_name = $validated['member_name'];
         $results = User::where('name', 'like', "%{$user_name}%")->get();
         $count = $results->count();
+        $userId = Auth::id();
 
-        return redirect()->route('dashboard')->with([
+        $data = Group::where('created_by', $userId)->get();
+        return Inertia::render('SearchUser', [
             'results' => $results,
             'searchcount' => $count,
+            'groupdata' => $data
         ]);
     }
     public function searchUser()
     {
-        return Inertia::render('SearchUser');
+        return Inertia::render('SearchUser', []);
     }
 }

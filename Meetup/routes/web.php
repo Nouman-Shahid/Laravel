@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\GroupInviteController;
+use App\Models\GroupInvite;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
@@ -16,9 +18,12 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-Route::get('/chat-room', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/chat-room', function () {
+//     return Inertia::render('Dashboard');
+// });
+
+Route::get('/chat-room', [GroupInviteController::class, 'showInvite'])->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::get('/groups', [GroupController::class, 'showGroupData'])->name('groups');
 
@@ -36,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
     Route::post('/search', [GroupController::class, 'search'])->name('search');
     Route::get('/search-user', [GroupController::class, 'searchUser'])->name('searchUser');
+    Route::post('/invite/{userId}/{groupcode}', [GroupInviteController::class, 'invite'])->name('invite');
 });
 
 require __DIR__ . '/auth.php';

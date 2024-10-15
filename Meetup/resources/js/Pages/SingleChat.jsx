@@ -58,10 +58,8 @@ const SingleChat = ({
 
                 <GroupDetails
                     groupdata={groupdata}
-                    count={count}
                     totalusers={totalusers}
-                    results={results}
-                    searchcount={searchcount}
+                    count={count}
                 />
             </div>
         </main>

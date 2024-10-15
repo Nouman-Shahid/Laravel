@@ -1,21 +1,25 @@
-import NoData from "@/Components/NoData";
+import Aside from "@/Components/Aside";
+import Invite from "@/Components/Invite";
 import Sidebar from "@/Components/Sidebar";
 import { Head } from "@inertiajs/react";
 
-export default function Dashboard({ messages }) {
+export default function Dashboard({ data }) {
     return (
         <main className="overflow-x-hidden">
             <div className="flex justify-between w-screen ">
                 <Sidebar
                     header={
-                        <h2 className="text-xl font-semibold  text-white">
-                            Chats
-                        </h2>
+                        <>
+                            <h2 className="text-xl font-semibold text-white">
+                                Notifications
+                            </h2>
+                        </>
                     }
+                    notifications={data}
                 />
-                <Head title="Chats" />
+                <Head title="Notifications" />
                 <div className="flex w-full justify-center items-center">
-                    {messages ? <div>Messages</div> : <NoData />}
+                    <Invite />
                 </div>
             </div>
         </main>

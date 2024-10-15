@@ -16,25 +16,6 @@ const Aside = () => {
                             alt=""
                         />
                     </NavLink>
-                    <NavLink
-                        href={route("dashboard")}
-                        active={route().current("dashboard")}
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="w-6 h-6"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M8 12h8m-8 4h8m-8-8h8M21 11.25C21 6.9 16.1 3 12 3S3 6.9 3 11.25c0 2.93 1.65 5.5 4.19 7.12A1.5 1.5 0 008 21h8a1.5 1.5 0 00.81-2.63C19.35 16.75 21 14.18 21 11.25z"
-                            />
-                        </svg>
-                    </NavLink>
 
                     <NavLink
                         href={route("groups")}
@@ -52,23 +33,6 @@ const Aside = () => {
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                                 d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
-                            />
-                        </svg>
-                    </NavLink>
-
-                    <NavLink>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="w-6 h-6"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M4.5 6h15a1.5 1.5 0 011.5 1.5v12a1.5 1.5 0 01-1.5 1.5h-15a1.5 1.5 0 01-1.5-1.5v-12A1.5 1.5 0 014.5 6zm0 0V3.75A1.5 1.5 0 016 2h12a1.5 1.5 0 011.5 1.5V6"
                             />
                         </svg>
                     </NavLink>
@@ -98,6 +62,42 @@ const Aside = () => {
                                 y2="21"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
+                            />
+                        </svg>
+                    </NavLink>
+                    <NavLink>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="w-6 h-6"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M4.5 6h15a1.5 1.5 0 011.5 1.5v12a1.5 1.5 0 01-1.5 1.5h-15a1.5 1.5 0 01-1.5-1.5v-12A1.5 1.5 0 014.5 6zm0 0V3.75A1.5 1.5 0 016 2h12a1.5 1.5 0 011.5 1.5V6"
+                            />
+                        </svg>
+                    </NavLink>
+
+                    <NavLink
+                        href={route("dashboard")}
+                        active={route().current("dashboard")}
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth="1.5"
+                            stroke="currentColor"
+                            className="w-7 h-7"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M15 17h5l-1.405-1.405A2.002 2.002 0 0018 15V10a6 6 0 00-12 0v5c0 .595-.237 1.13-.595 1.595L4 17h5m6 0a3 3 0 01-6 0"
                             />
                         </svg>
                     </NavLink>

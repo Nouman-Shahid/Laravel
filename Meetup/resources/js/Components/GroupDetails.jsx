@@ -1,12 +1,7 @@
 import React from "react";
 import NavLink from "./NavLink";
 
-const GroupDetails = ({
-    groupdata = {},
-    count = 0,
-    totalusers = [],
-    results,
-}) => {
+const GroupDetails = ({ groupdata = {}, totalusers = [], count }) => {
     return (
         <div className="flex flex-col w-full py-4 bg-[#212121] text-[#E0E0E0] shadow-lg p-5">
             <div className="flex flex-col items-center justify-between py-5">
@@ -27,18 +22,6 @@ const GroupDetails = ({
                 >
                     Add member
                 </NavLink>
-            </div>
-
-            <div className="flex">
-                {results ? (
-                    results.map((item, index) => (
-                        <div key={index} className="flex">
-                            {item.name} {/* Display the user name */}
-                        </div>
-                    ))
-                ) : (
-                    <p>No results found.</p>
-                )}
             </div>
 
             <div className="flex flex-col space-y-3 p-2">
