@@ -6,30 +6,42 @@ use Inertia\Inertia;
 use App\Models\Group;
 use App\Models\Message;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
+    // Laravel MessageController store method
     public function store(Request $request, $code)
     {
         $groupdata = Group::where('code', $code)->first();
-
         $userId = Auth::id();
         $user = Auth::user();
 
         // Validate incoming request
         $request->validate([
-            'message' => 'required|string|max:255',
+            'message' => 'nullable|string|max:255',
+            'file' => 'nullable|file|mimes:jpg,jpeg,png,gif,txt,pdf|max:2048',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:1000',
         ]);
 
-        // Create the message
-        Message::create([
+        $messageData = [
             'message' => $request->message,
-            'group_code' => $groupdata->code, // This should not be null
+            'group_code' => $groupdata->code,
             'user_id' => $userId,
             'user_name' => $user->name,
-        ]);
+        ];
+
+        // Handle file upload
+        if ($request->hasFile('file')) {
+            $messageData['file'] = $request->file('file')->store('files');
+        }
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $messageData['image'] = $request->file('image')->store('images');
+        }
+
+        Message::create($messageData);
 
         return redirect()->back();
     }

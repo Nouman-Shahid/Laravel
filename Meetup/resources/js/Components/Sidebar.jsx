@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Aside from "./Aside";
+import { format } from "date-fns";
 
 const Sidebar = ({
     header,
@@ -59,7 +60,11 @@ const Sidebar = ({
                                           {item.name}
                                       </h1>
                                       <p className="text-xs text-gray-500 dark:text-gray-300">
-                                          {item.created_at}
+                                          created at:{" "}
+                                          {format(
+                                              new Date(item.created_at),
+                                              "dd/MM/yyyy"
+                                          )}
                                       </p>
                                   </div>
                               </a>
@@ -113,7 +118,11 @@ const Sidebar = ({
                                         {item.name}
                                     </h1>
                                     <p className="text-xs text-gray-500 dark:text-gray-300">
-                                        {item.created_at}
+                                        created at:{" "}
+                                        {format(
+                                            new Date(item.created_at),
+                                            "dd/MM/yyyy"
+                                        )}
                                     </p>
                                 </div>
                             </a>

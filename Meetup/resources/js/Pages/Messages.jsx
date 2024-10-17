@@ -4,39 +4,56 @@ import MessageItem from "@/Components/MessageItem";
 import NoData from "@/Components/NoData";
 
 const Messages = ({ messages, userId, setMessages, groupdata }) => {
-    const { data, setData, post, errors } = useForm({ message: "" });
+    const { data, setData, post, errors } = useForm({
+        message: "",
+        image: null,
+        file: null,
+    });
     const endOfMessagesRef = useRef(null); // Create a reference for the end of messages
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setData(name, value);
+        const { name, value, files } = e.target;
+        if (files) {
+            setData(name, files[0]); // Only set the first file
+        } else {
+            setData(name, value);
+        }
+    };
+
+    const handleImageUpload = (e) => {
+        handleChange(e); // Use the same handleChange for image
+    };
+
+    const handleFileUpload = (e) => {
+        handleChange(e); // Use the same handleChange for file
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Form submitted with message:", data.message);
-        if (!data.message.trim()) return; // Prevent submitting empty messages
 
-        const newMessage = {
-            id: Date.now(), // Temporary ID
-            message: data.message,
-            user_id: userId,
-            user_name: "You",
-            created_at: new Date().toISOString(),
-        };
+        // Prevent submitting if all inputs are empty
+        if (!data.message.trim() && !data.file && !data.image) return;
 
-        setMessages((prevMessages) => [...prevMessages, newMessage]);
+        const formData = new FormData();
+        formData.append("message", data.message);
+        if (data.file) {
+            formData.append("file", data.file);
+        }
+        if (data.image) {
+            formData.append("image", data.image);
+        }
 
-        post(`/messages/${groupdata.code}`, {
+        post(`/messages/${groupdata.code}`, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
             onSuccess: () => {
                 console.log("Message sent successfully");
-                setData({ message: "" }); // Clear input on success
+                setData({ message: "", image: null, file: null }); // Clear inputs on success
             },
             onError: (error) => {
                 console.error("Error sending message:", error);
-                setMessages((prevMessages) =>
-                    prevMessages.filter((msg) => msg.id !== newMessage.id)
-                );
             },
         });
     };
@@ -64,7 +81,6 @@ const Messages = ({ messages, userId, setMessages, groupdata }) => {
                         <NoData />
                     </div>
                 )}
-                {/* This empty div will help us scroll to the bottom */}
                 <div ref={endOfMessagesRef} />
             </div>
             <form onSubmit={handleSubmit} className="flex h-[7vh] w-[55vw]">
@@ -76,16 +92,48 @@ const Messages = ({ messages, userId, setMessages, groupdata }) => {
                     onChange={handleChange}
                     className="w-full outline-none"
                 />
+                <input
+                    type="file"
+                    name="image"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    className="hidden" // Hide the default file input
+                />
+                <button
+                    type="button"
+                    onClick={() =>
+                        document.querySelector('input[name="image"]').click()
+                    }
+                    className="bg-gray-700 p-2"
+                >
+                    Upload Image
+                </button>
+                <input
+                    type="file"
+                    name="file"
+                    accept=".txt,.pdf,.jpg,.jpeg,.png,.gif"
+                    onChange={handleFileUpload}
+                    className="hidden" // Hide the default file input
+                />
+                <button
+                    type="button"
+                    onClick={() =>
+                        document.querySelector('input[name="file"]').click()
+                    }
+                    className="bg-gray-700 p-2"
+                >
+                    Upload File
+                </button>
                 <button
                     type="submit"
                     className="px-4 py-1 bg-green-500 text-white"
                 >
-                    <img src="https://img.icons8.com/?size=24&id=3925&format=png" />
+                    Send
                 </button>
             </form>
             {errors.message && (
                 <div className="text-red-600">{errors.message}</div>
-            )}{" "}
+            )}
         </>
     );
 };

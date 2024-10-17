@@ -1,9 +1,10 @@
 import React from "react";
 import NavLink from "./NavLink";
+import { format } from "date-fns";
 
 const GroupDetails = ({ groupdata = {}, totalusers = [], count }) => {
     return (
-        <div className="flex flex-col w-full py-4 bg-[#212121] text-[#E0E0E0] shadow-lg p-5">
+        <div className="flex flex-col w-full py-4 bg-[#212121] text-[#E0E0E0] shadow-lg p-5 h-screen overflow-auto">
             <div className="flex flex-col items-center justify-between py-5">
                 <img
                     src={groupdata.groupimage || ""}
@@ -13,15 +14,25 @@ const GroupDetails = ({ groupdata = {}, totalusers = [], count }) => {
                 <h1 className="text-2xl font-bold text-white mt-3">
                     {groupdata.name || "Group Name"}
                 </h1>
-                <p className="font-semibold text-[#B0B0B0]">{count} Members</p>
+                <p className="font-semibold text-[#B0B0B0] mb-2">
+                    {count} Members
+                </p>
 
                 <NavLink
                     href={route("searchUser")}
                     active={route().current("searchUser")}
-                    className="mt-2 bg-green-600 text-white py-1 px-4 rounded-md hover:bg-green-700 transition duration-200"
+                    className=" bg-green-600 text-white py-1 px-4 rounded-md hover:bg-green-700 transition duration-200"
                 >
                     Add member
                 </NavLink>
+
+                <p className="text-gray-300 mt-3">
+                    created at:{" "}
+                    {format(
+                        new Date(groupdata.created_at),
+                        "dd/MM/yyyy hh:mm a"
+                    )}
+                </p>
             </div>
 
             <div className="flex flex-col space-y-3 p-2">

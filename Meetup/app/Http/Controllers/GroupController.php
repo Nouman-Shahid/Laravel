@@ -79,8 +79,8 @@ class GroupController extends Controller
             )
             ->get();
         $groupdata = Group::where('code', $code)->first();
-        $count = Message::distinct('user_id')->count('created_by');
-        $totalusers = Message::distinct('user_id')->get();
+        $count = Message::where('group_code', $code)->distinct('user_id')->count('user_id');
+        $totalusers = Message::where('group_code', $code)->distinct('user_id')->get();
         // Fetch all messages in the group
         $messages = Message::where('group_code', $code)
             ->orderBy('created_at', 'asc')
