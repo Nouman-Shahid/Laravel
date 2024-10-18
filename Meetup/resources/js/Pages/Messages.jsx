@@ -84,6 +84,24 @@ const Messages = ({ messages, userId, setMessages, groupdata }) => {
                 <div ref={endOfMessagesRef} />
             </div>
             <form onSubmit={handleSubmit} className="flex h-[7vh] w-[55vw]">
+                <button
+                    type="button"
+                    onClick={() =>
+                        document.querySelector('input[name="image"]').click()
+                    }
+                    className="bg-gray-200 p-2 border border-r-gray-600"
+                >
+                    <img src="https://img.icons8.com/?size=48&id=xZiTPdO57ltQ&format=png" />
+                </button>
+                <button
+                    type="button"
+                    onClick={() =>
+                        document.querySelector('input[name="file"]').click()
+                    }
+                    className="bg-gray-200 p-2"
+                >
+                    <img src="https://img.icons8.com/?size=48&id=12053&format=png" />
+                </button>
                 <input
                     type="text"
                     name="message"
@@ -99,31 +117,15 @@ const Messages = ({ messages, userId, setMessages, groupdata }) => {
                     onChange={handleImageUpload}
                     className="hidden" // Hide the default file input
                 />
-                <button
-                    type="button"
-                    onClick={() =>
-                        document.querySelector('input[name="image"]').click()
-                    }
-                    className="bg-gray-700 p-2"
-                >
-                    Upload Image
-                </button>
+
                 <input
                     type="file"
                     name="file"
                     accept=".txt,.pdf,.jpg,.jpeg,.png,.gif"
                     onChange={handleFileUpload}
-                    className="hidden" // Hide the default file input
+                    className="hidden"
                 />
-                <button
-                    type="button"
-                    onClick={() =>
-                        document.querySelector('input[name="file"]').click()
-                    }
-                    className="bg-gray-700 p-2"
-                >
-                    Upload File
-                </button>
+
                 <button
                     type="submit"
                     className="px-4 py-1 bg-green-500 text-white"
