@@ -29,7 +29,7 @@ const MessageItem = React.memo(({ message, userId }) => {
                             <a
                                 href={message.file}
                                 download
-                                className="flex flex-col items-center mt-2 p-2 border border-gray-300 rounded hover:bg-gray-600"
+                                className="flex flex-col items-center mt-2 p-2 rounded hover:bg-gray-600"
                             >
                                 <img
                                     src="https://img.icons8.com/?size=80&id=5jar9D6idwWX&format=png"
