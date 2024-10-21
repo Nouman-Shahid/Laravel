@@ -45,9 +45,7 @@ const GroupDetails = ({ groupdata = {}, totalusers = [], count }) => {
             </div>
 
             <div className="flex flex-col space-y-3 p-2">
-                <h2 className="font-bold text-lg text-[#E0E0E0]">
-                    Team Members:
-                </h2>
+                <h2 className="font-bold text-lg text-[#E0E0E0]">Members:</h2>
                 {totalusers.length > 0 ? (
                     totalusers.map((item) => (
                         <div

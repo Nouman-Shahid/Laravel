@@ -10,14 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
-    // Laravel MessageController store method
     public function store(Request $request, $code)
     {
         $groupdata = Group::where('code', $code)->first();
         $userId = Auth::id();
         $user = Auth::user();
 
-        // Validate incoming request
         $request->validate([
             'message' => 'nullable|string|max:255',
             'file' => 'nullable|file|mimes:jpg,jpeg,png,gif,txt,pdf|max:2048',
