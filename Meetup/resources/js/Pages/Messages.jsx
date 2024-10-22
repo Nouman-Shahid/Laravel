@@ -3,7 +3,7 @@ import { useForm } from "@inertiajs/react";
 import MessageItem from "@/Components/MessageItem";
 import NoData from "@/Components/NoData";
 
-const Messages = ({ messages, userId, setMessages, groupdata }) => {
+const Messages = ({ messages, userId, groupdata }) => {
     const { data, setData, post, errors } = useForm({
         message: "",
         image: null,
