@@ -20,6 +20,7 @@ class MessageController extends Controller
             'message' => 'nullable|string|max:255',
             'file' => 'nullable|file|mimes:jpg,jpeg,png,gif,txt,pdf|max:2048',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:1000',
+            'emojies' => 'nullable|mimes:gif',
         ]);
 
         $messageData = [
