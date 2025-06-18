@@ -45,7 +45,6 @@ class NotesController extends Controller
     {
         $user = Auth::user();
 
-
         Notes::where('id', $id)->update([
             'iscompleted' => 'true',
         ]);

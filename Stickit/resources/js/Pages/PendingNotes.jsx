@@ -19,7 +19,7 @@ const PendingNotes = ({ notes = [], auth }) => {
                         {notes.map((item) => (
                             <div
                                 key={item.id}
-                                className="flex flex-col border-2 h-64 w-64 shadow-xl"
+                                className="flex flex-col border-2 h-64 w-64 shadow-xl hover:scale-105 cursor-pointer transition delay-150"
                                 style={{
                                     backgroundColor: `#${
                                         item.color || "A7F3D0"
